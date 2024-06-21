@@ -1,0 +1,2 @@
+Airline : Turkish Airlines
+Aircraft Type : narrowbody
