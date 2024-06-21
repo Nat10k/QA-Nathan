@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({path:'./spotify_test/.env'});
 const username = process.env.SPOTIFY_EMAIL;
 const password = process.env.SPOTIFY_PASSWORD;
 
@@ -51,7 +51,7 @@ Scenario('invalid password',  async ({ I }) => {
     I.see('Create a password'); // Still on page
 });
 
-Scenario.only('complete signup',  async ({ I }) => {
+Scenario('complete signup',  async ({ I }) => {
     I.fillField('#username', username);
     I.waitForValue('#username', username, 5);
     I.click('Next');

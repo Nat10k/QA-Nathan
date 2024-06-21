@@ -1,5 +1,5 @@
 // in this file you can append custom step methods to 'I' object
-const waitTime = 5;
+const waitTime = 10;
 export = function() {
   return actor({
       openSignUp: function() {
