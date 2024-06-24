@@ -1,4 +1,5 @@
 // in this file you can append custom step methods to 'I' object
+// Metode di sini untuk spotify
 const waitTime = 10;
 export = function() {
   return actor({
