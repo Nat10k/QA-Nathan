@@ -18,7 +18,7 @@ export const config: CodeceptJS.MainConfig = {
       waitForNavigation: 'networkidle0',
       waitForAction: 1500,
       chrome: {
-        args: ['--no-sandbox', '--window-size=800,600'],
+        args: ['--no-sandbox', '--window-size=800,600', '--disable-notifications'],
       }
     },
     FileSystem: {}

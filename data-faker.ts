@@ -8,7 +8,7 @@ const makeFakeAvatar = async (imgSavePath : string) => {
     fs.writeFileSync(imgSavePath, imgBuffer);
 }
 
-const makeFakeTextFile = async (filePath) => {
+const makeFakeTextFile = async (filePath : string) => {
     fs.writeFileSync(filePath, "Airline : " + faker.airline.airline().name + "\nAircraft Type : " + faker.airline.aircraftType());
 }
 

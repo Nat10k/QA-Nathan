@@ -10,9 +10,10 @@ const baseURL = "https://id-id.facebook.com"
 
 Feature('post');
 
-const waitTime = 5;
+const waitTime = 10;
 
 Before(({ I }) => {
+    // Login
     I.amOnPage(baseURL);
     I.fillField('email', email);
     I.fillField('pass', password);
@@ -20,27 +21,42 @@ Before(({ I }) => {
     I.wait(waitTime);
 })
 
-Scenario.only('add profile photo', async ({ I }) => {
+Scenario('add/edit profile photo', async ({ I }) => {
     I.click('Profil Anda');
     I.click(firstName + " " + lastName);
     I.click('Tindakan foto profil');
-    I.click('Pilih foto profil');
+    I.click(locate('div').withAttr({'role':'menuitem'}).withText('Pilih foto profil'));
     // Upload image
     await makeFakeAvatar('testAvatar.jpg');
-    I.attachFile({css:'input[type="file"]'}, 'testAvatar.jpg');
-    pause();
+    I.attachFile('div[role="dialog"] input[type="file"]', 'testAvatar.jpg');
+    I.click('Simpan');
 });
 
-// Scenario('wrong credentials', async ({ I }) => { // Facebook doesn't handle spaces in email
-//     I.fillField('email', 'lolololololol@gmail.com');
-//     I.fillField('pass', password);
-//     I.click('Masuk');
-//     I.wait(waitTime);
-//     I.see('Kredensial Salah');
+Scenario('add/edit cover photo', async ({ I }) => {
+    I.click('Profil Anda');
+    I.click(firstName + " " + lastName);
+    // Upload image
+    await makeFakeAvatar('testAvatar.jpg');
+    I.attachFile('input[type="file"]', 'testAvatar.jpg');
+    I.wait(10);
+    I.click(locate('div').withAttr({'aria-label':'Simpan perubahan'}));
+});
 
-//     I.fillField('email', email);
-//     I.fillField('pass', 'iohvubahidbiuwgeiyg781y2471');
-//     I.click('Masuk');
-//     I.wait(waitTime);
-//     I.see('Kredensial Salah');
-// });
+Scenario.only('post text', async ({ I }) => { // Facebook doesn't handle spaces in email
+    I.click('Buat');
+    I.click(locate('div').withAttr({'role':'button'}).withDescendant(locate('span').withText('Posting'))); // Posting button
+    I.fillField(locate('div').withAttr({'role':'textbox'}),'test'); // Post textbox
+    I.see('test');
+    I.click('Kirim');
+});
+
+Scenario('post text and photo', async ({ I }) => { // Facebook doesn't handle spaces in email
+    I.click('Buat');
+    I.click(locate('div').withAttr({'role':'button'}).withDescendant(locate('span').withText('Posting'))); // Posting button
+    I.fillField(locate('div').withAttr({'role':'textbox'}),'test photo'); // Post textbox
+    I.see('test photo');
+    await makeFakeAvatar('testAvatar.jpg');
+    I.click('Foto/video');
+    I.attachFile('form input[type="file"]', 'testAvatar.jpg');
+    I.click('Kirim');
+});
