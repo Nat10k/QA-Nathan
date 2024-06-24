@@ -42,7 +42,7 @@ Scenario('add/edit cover photo', async ({ I }) => {
     I.click(locate('div').withAttr({'aria-label':'Simpan perubahan'}));
 });
 
-Scenario.only('post text', async ({ I }) => { // Facebook doesn't handle spaces in email
+Scenario('post text', async ({ I }) => { // Facebook doesn't handle spaces in email
     I.click('Buat');
     I.click(locate('div').withAttr({'role':'button'}).withDescendant(locate('span').withText('Posting'))); // Posting button
     I.fillField(locate('div').withAttr({'role':'textbox'}),'test'); // Post textbox
