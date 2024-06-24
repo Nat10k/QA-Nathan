@@ -39,7 +39,7 @@ Scenario('add/edit cover photo', async ({ I }) => {
     await makeFakeAvatar('testAvatar.jpg');
     I.attachFile('input[type="file"]', 'testAvatar.jpg');
     I.wait(10);
-    I.click(locate('div').withAttr({'aria-label':'Simpan perubahan'}));
+    I.click({css:'div.__fb-dark-mode.x1afcbsf.x1uhb9sk.x1swf91x.x78zum5.xsag5q8.x1pi30zi.x1swvt13.xz9dl7a div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.xeuugli.x1iyjqo2.xs83m0k.x150jy0e.x1e558r4.xjkvuk6.x1iorvi4.xdl72j9'});
 });
 
 Scenario('post text', async ({ I }) => { // Facebook doesn't handle spaces in email
@@ -59,4 +59,10 @@ Scenario('post text and photo', async ({ I }) => { // Facebook doesn't handle sp
     I.click('Foto/video');
     I.attachFile('form input[type="file"]', 'testAvatar.jpg');
     I.click('Kirim');
+});
+
+Scenario.only('like self post', async ({ I }) => { // Facebook doesn't handle spaces in email
+    I.click('Beranda');
+    // Like topmost post
+    I.click('Suka');
 });
