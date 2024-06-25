@@ -18,15 +18,16 @@ Before(({ I }) => {
     I.wait(waitTime);
 });
 
-Scenario('like self post', async ({ I }) => {
+Scenario('comment on one post', async ({ I }) => {
     I.click('Beranda');
-    // Like top self post
-    I.click('Suka');
-    // Like all self post
-    I.executeScript(() => document.querySelectorAll('[aria-label="Suka"]').forEach(e => {
-        if (e instanceof HTMLElement) {
-            e.click();
-        }
-    }));
+    // Comment on first found post
+    I.click('Komentari');
+    I.fillField('Tulis komentar...', 'hellow world');
+    I.click('Komentari');
 });
 
+Scenario('100.000 words comment', async ({ I }) => {
+    I.click('Beranda');
+    I.fillField('Tulis komentar...', process.env.LONG_COMMENT); // Facebook has character limit although not shown
+    I.click('Komentari');
+});
