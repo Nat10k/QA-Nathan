@@ -38,8 +38,8 @@ Scenario('add/edit cover photo', async ({ I }) => {
     // Upload image
     await makeFakeAvatar('testAvatar.jpg');
     I.attachFile('input[type="file"]', 'testAvatar.jpg');
-    I.wait(10);
-    I.click({css:'div.__fb-dark-mode.x1afcbsf.x1uhb9sk.x1swf91x.x78zum5.xsag5q8.x1pi30zi.x1swvt13.xz9dl7a div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.xeuugli.x1iyjqo2.xs83m0k.x150jy0e.x1e558r4.xjkvuk6.x1iorvi4.xdl72j9'});
+    I.wait(2); // wait for image to upload
+    I.click(locate('div').withClassAttr("x1n2onr6 x1ja2u2z x78zum5 x2lah0s xl56j7k x6s0dn4 xozqiw3 x1q0g3np xi112ho x17zwfj4 x585lrc x1403ito x972fbf xcfux6l x1qhh985 xm0m39n x9f619 xbxaen2 x1u72gb5 xtvsq51 x1r1pt67"));
 });
 
 Scenario('post text', async ({ I }) => { // Facebook doesn't handle spaces in email
@@ -61,7 +61,7 @@ Scenario('post text and photo', async ({ I }) => { // Facebook doesn't handle sp
     I.click('Kirim');
 });
 
-Scenario.only('like self post', async ({ I }) => { // Facebook doesn't handle spaces in email
+Scenario('like self post', async ({ I }) => { // Facebook doesn't handle spaces in email
     I.click('Beranda');
     // Like topmost post
     I.click('Suka');
