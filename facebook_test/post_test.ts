@@ -8,7 +8,7 @@ const baseURL = "https://id-id.facebook.com"
 
 Feature('post');
 
-const waitTime = 10;
+const waitTime = 5;
 
 Before(({ I }) => {
     // Login

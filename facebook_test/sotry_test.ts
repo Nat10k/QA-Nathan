@@ -5,7 +5,7 @@ const email = process.env.FACEBOOK_EMAIL;
 const password = process.env.FACEBOOK_PASSWORD;
 const baseURL = "https://id-id.facebook.com"
 
-Feature('like');
+Feature('story');
 
 const waitTime = 5;
 
