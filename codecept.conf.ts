@@ -21,7 +21,10 @@ export const config: CodeceptJS.MainConfig = {
         args: ['--no-sandbox', '--window-size=1024,768', '--disable-notifications'],
       }
     },
-    FileSystem: {}
+    FileSystem: {},
+    CustomHelper: {
+      require: './customhelper_helper.ts',
+    },
   },
   include: {
     I: './steps_file'
