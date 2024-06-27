@@ -20,7 +20,6 @@ Before(({ I }) => {
 });
 
 Scenario('make new group', async ({ I }) => {
-    I.click('Beranda');
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
     I.click('Buat Grup Baru');
     I.fillField('Nama Grup', groupName);
@@ -40,10 +39,25 @@ Scenario('make new group', async ({ I }) => {
 });
 
 Scenario('open group', ({ I }) => {
-    I.click('Beranda');
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
     I.click(locate('a').inside(locate('div').withAttr({'aria-label':'Daftar Grup'})).withAttr({ role:'link'}).withText(groupName));
     I.wait(waitTime);
     I.see('Beranda komunitas');
-})
+});
 
+Scenario.only('post in group', ({ I }) => {
+    I.click(locate('a').withAttr({'aria-label':'Grup'}));
+    I.click(locate('a').inside(locate('div').withAttr({'aria-label':'Daftar Grup'})).withAttr({ role:'link'}).withText(groupName));
+    I.wait(waitTime);
+    I.see('Beranda komunitas');
+
+    // Normal text post
+    I.click(locate('div').withAttr({role:'button'}).withDescendant(locate('span').withText('Tulis sesuatu...')));
+    I.type('Post test');
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Posting'}));
+    I.wait(waitTime);
+    I.see('Post test');
+    // Like the post
+    I.click('Suka', locate('div').withClassAttr('x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k xg83lxy x1h0ha7o x10b6aqq x1yrsyyn').inside({css:'[role=feed]'}).last());
+    pause();
+});
