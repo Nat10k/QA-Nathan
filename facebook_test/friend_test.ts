@@ -27,7 +27,7 @@ Scenario('add friend', async ({ I }) => {
     I.see('Batalkan permintaan');
 });
 
-Scenario.only('chat', async ({ I }) => {
+Scenario('chat', async ({ I }) => {
     I.amOnPage(friendProfile);
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Kirim pesan'}));
     I.wait(5);

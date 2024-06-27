@@ -83,3 +83,19 @@ Scenario('anonymous photo post in group', async ({ I }) => {
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})).first());
     I.seeElement(locate('div').withAttr({role:'button', 'aria-label':'Hapus Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})));
 });
+
+Scenario('invite friend', async ({ I }) => {
+    I.click(locate('a').withAttr({'aria-label':'Grup'}));
+    I.click(locate('a').inside(locate('div').withAttr({'aria-label':'Daftar Grup'})).withAttr({ role:'link'}).withText(groupName));
+    I.wait(waitTime);
+    I.see('Beranda komunitas');
+
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Undang'}));
+    I.click(locate('div').withAttr({role:'menuitem'}).withDescendant(locate('span').withTextEquals('Undang teman Facebook')));
+    I.fillField(locate('input').withAttr({'aria-label':'Cari teman berdasarkan nama'}), 'No');
+    I.wait(2);
+    I.click(locate('div').withAttr({role:'checkbox'}).first());
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Kirim Undangan'}));
+    I.wait(2);
+    I.see('Beranda komunitas');
+});
