@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import { makeFakeAvatar, makeFakeTextFile } from '../data-faker';
 
 dotenv.config({path:'./facebook_test/.env'});
 const email = process.env.FACEBOOK_EMAIL;
@@ -45,7 +46,7 @@ Scenario('open group', ({ I }) => {
     I.see('Beranda komunitas');
 });
 
-Scenario.only('post in group', ({ I }) => {
+Scenario('post text in group', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
     I.click(locate('a').inside(locate('div').withAttr({'aria-label':'Daftar Grup'})).withAttr({ role:'link'}).withText(groupName));
     I.wait(waitTime);
@@ -58,6 +59,27 @@ Scenario.only('post in group', ({ I }) => {
     I.wait(waitTime);
     I.see('Post test');
     // Like the post
-    I.click('Suka', locate('div').withClassAttr('x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x193iq5w xeuugli x1r8uery x1iyjqo2 xs83m0k xg83lxy x1h0ha7o x10b6aqq x1yrsyyn').inside({css:'[role=feed]'}).last());
-    pause();
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})).first());
+    I.seeElement(locate('div').withAttr({role:'button', 'aria-label':'Hapus Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})));
+});
+
+Scenario('anonymous photo post in group', async ({ I }) => {
+    I.click(locate('a').withAttr({'aria-label':'Grup'}));
+    I.click(locate('a').inside(locate('div').withAttr({'aria-label':'Daftar Grup'})).withAttr({ role:'link'}).withText(groupName));
+    I.wait(waitTime);
+    I.see('Beranda komunitas');
+
+    // Anonymous photo post
+    I.click(locate('div').withAttr({role:'button'}).withDescendant(locate('span').withTextEquals('Postingan Anonim')));
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Buat Postingan Anonim'}).inside(locate('div').withAttr({role:'dialog'})));
+    I.type('Anonymous test');
+    await makeFakeAvatar('fakeAvatar.jpg');
+    I.attachFile(locate('input').withAttr({type:'file'}).inside(locate('div').withAttr({role:'dialog'})), 'fakeAvatar.jpg');
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Kirim'}).inside(locate('div').withAttr({role:'dialog'})));
+    I.wait(waitTime);
+    I.see('Anggota anonim');
+    I.see('Anonymous test');
+    // Like the post
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})).first());
+    I.seeElement(locate('div').withAttr({role:'button', 'aria-label':'Hapus Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})));
 });
