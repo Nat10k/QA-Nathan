@@ -35,16 +35,14 @@ Scenario('invalid email', async ({ I }) => { // Facebook doesn't handle spaces i
     I.click('Next');
 });
 
-Scenario.only('invalid password',  async ({ I }) => {
+Scenario('invalid password',  async ({ I }) => {
     I.fillField('Name', name);
     I.fillField('Email', email);
     I.selectOption('Month', 'February');
     I.selectOption('Day', '28');
     I.selectOption('Year', '2002');
     I.click('Next');
-    I.wait(5);
-    I.click({css:'[data-theme="home.verifyButton"]'});
-    I.wait(180); // Wait until verification is done
+    I.wait(120); // Wait until verification is done
     I.fillField('Password', 'ab');
 });
 
@@ -55,8 +53,6 @@ Scenario('complete register',  async ({ I }) => {
     I.selectOption('Day', '28');
     I.selectOption('Year', '2002');
     I.click('Next');
-    I.wait(5);
-    I.click({css:'[data-theme="home.verifyButton"]'});
-    I.wait(180); // Wait until verification is done
+    I.wait(120); // Wait until verification is done
     I.fillField('Password', password);
 });

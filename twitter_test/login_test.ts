@@ -30,7 +30,9 @@ Scenario('wrong credentials', async ({ I }) => {
 });
 
 Scenario('complete login',  async ({ I }) => {
+    I.click('Sign in');
     I.fillField('Phone, email, or username', email);
+    I.click('Next');
     I.fillField('password', password);
     I.click('Log in');
     I.waitForText('What is happening?!',waitTime);
