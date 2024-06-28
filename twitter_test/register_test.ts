@@ -35,15 +35,16 @@ Scenario('invalid email', async ({ I }) => { // Facebook doesn't handle spaces i
     I.click('Next');
 });
 
-Scenario('invalid password',  async ({ I }) => {
+Scenario.only('invalid password',  async ({ I }) => {
     I.fillField('Name', name);
     I.fillField('Email', email);
     I.selectOption('Month', 'February');
     I.selectOption('Day', '28');
     I.selectOption('Year', '2002');
     I.click('Next');
-    I.wait(120); // Wait until verification is done
+    I.wait(60); // Wait until verification is done
     I.fillField('Password', 'ab');
+    I.see('Your password needs to be at least 8 characters.');
 });
 
 Scenario('complete register',  async ({ I }) => {
@@ -53,6 +54,7 @@ Scenario('complete register',  async ({ I }) => {
     I.selectOption('Day', '28');
     I.selectOption('Year', '2002');
     I.click('Next');
-    I.wait(120); // Wait until verification is done
+    I.wait(60); // Wait until verification is done
     I.fillField('Password', password);
+    I.click('Sign up');
 });
