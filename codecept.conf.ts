@@ -14,11 +14,11 @@ export const config: CodeceptJS.MainConfig = {
       url: 'https://open.spotify.com',
       show: true,
       restart: false,
-      windowSize: '1024x500',
+      windowSize: '1024x650',
       waitForNavigation: 'networkidle0',
       waitForAction: 1500,
       chrome: {
-        args: ['--no-sandbox', '--window-size=1024,500', '--disable-notifications', '--use-fake-ui-for-media-stream'],
+        args: ['--no-sandbox', '--window-size=1024,650', '--disable-notifications', '--use-fake-ui-for-media-stream'],
       }
     },
     FileSystem: {},
