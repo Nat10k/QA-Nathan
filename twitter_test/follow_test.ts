@@ -8,28 +8,24 @@ const baseURL = "https://x.com/?lang=en"
 
 Feature('follow');
 
-const waitTime = 10;
-
-Before(({ I }) => {
-    I.amOnPage(baseURL);
-    I.click('Sign in');
-    I.fillField('Phone, email, or username', email);
-    I.click('Next');
-    I.fillField('password', password);
-    I.click('Log in');
-    I.waitForText('What is happening?!',waitTime);
+Before(({ login }) => {
+    login('user');
 });
 
 Scenario('Follow random person', async ({ I }) => {
     I.scrollPageToBottom();
     I.see('Who to follow');
     I.click('Follow');
-    I.see('Following')
+    I.see('Following');
+    // Unfollow
+    I.click('Following');
+    pause();
 });
 
-Scenario('search friend to follow',  async ({ I }) => {
-    I.click('Explore');
+Scenario.only('search friend to follow',  async ({ I }) => {
+    I.click({css : '[data-testid="AppTabBar_Explore_Link"'});
     I.fillField('Search', friend);
+    I.click('Search for');
     I.click('Follow');
     I.see('Following');
 });

@@ -11,12 +11,13 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'https://open.spotify.com',
+      url: 'https://x.com/?lang=en',
       show: true,
       restart: false,
       windowSize: '1024x680',
       waitForNavigation: 'networkidle0',
       waitForAction: 1500,
+      keepCookies: true,
       chrome: {
         args: ['--no-sandbox', '--window-size=1024,600', '--disable-notifications', '--use-fake-ui-for-media-stream'],
       }
@@ -29,6 +30,25 @@ export const config: CodeceptJS.MainConfig = {
   plugins: {
     autoDelay: {
       enabled: true
+    },
+    autoLogin: {
+      enabled: true,
+      saveToFile: true,
+      inject: 'login',
+      users: {
+        user: {
+          // loginAdmin function is defined in `steps_file.js`
+          login: (I) => I.loginTwitter(),
+          // if we see `Admin` on page, we assume we are logged in
+          check: (I) => {
+             I.seeInCurrentUrl('/home');
+             I.see('What is happening?!');
+          },
+          fetch: () => {}, // empty function
+          restore: () => {}, // empty funciton
+        }
+        
+      }
     }
  },
   include: {
