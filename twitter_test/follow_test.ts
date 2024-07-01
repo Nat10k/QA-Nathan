@@ -22,7 +22,7 @@ Scenario('Follow random person', async ({ I }) => {
     pause();
 });
 
-Scenario.only('search friend to follow',  async ({ I }) => {
+Scenario('search friend to follow',  async ({ I }) => {
     I.click({css : '[data-testid="AppTabBar_Explore_Link"'});
     I.fillField('Search', friend);
     I.click('Search for');
