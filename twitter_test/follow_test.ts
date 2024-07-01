@@ -16,9 +16,6 @@ Scenario('Follow random person', async ({ I }) => {
     I.see('Who to follow');
     I.click('Follow');
     I.see('Following');
-    // Unfollow
-    I.click('Following');
-    pause();
 });
 
 Scenario('search friend to follow',  async ({ I }) => {
@@ -33,7 +30,7 @@ Scenario('unfollow all', async ({ I }) => {
     I.click({css:'[data-testid="AppTabBar_Profile_Link"]'});
     I.click('Following');
     // I.click('Following');
-    await I.executeAsyncScript(async () => {
+    I.executeScript(() => {
         var regExp = new RegExp('^Following @*');
         const followButtons = document.querySelectorAll('button');
         // I.say(followButtons.toString());
@@ -54,5 +51,4 @@ Scenario('unfollow all', async ({ I }) => {
             }
         });
     });
-    pause();
 });
