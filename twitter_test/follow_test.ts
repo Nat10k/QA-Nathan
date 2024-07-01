@@ -18,7 +18,7 @@ Before(({ I }) => {
     I.fillField('password', password);
     I.click('Log in');
     I.waitForText('What is happening?!',waitTime);
-})
+});
 
 Scenario('Follow random person', async ({ I }) => {
     I.scrollPageToBottom();

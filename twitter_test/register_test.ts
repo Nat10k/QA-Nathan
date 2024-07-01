@@ -35,7 +35,7 @@ Scenario('invalid email', async ({ I }) => { // Facebook doesn't handle spaces i
     I.click('Next');
 });
 
-Scenario.only('invalid password',  async ({ I }) => {
+Scenario('invalid password',  async ({ I }) => {
     I.fillField('Name', name);
     I.fillField('Email', email);
     I.selectOption('Month', 'February');
@@ -57,4 +57,5 @@ Scenario('complete register',  async ({ I }) => {
     I.wait(60); // Wait until verification is done
     I.fillField('Password', password);
     I.click('Sign up');
+    I.waitForText('What is happening?!',waitTime);
 });

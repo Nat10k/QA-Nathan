@@ -14,11 +14,11 @@ export const config: CodeceptJS.MainConfig = {
       url: 'https://open.spotify.com',
       show: true,
       restart: false,
-      windowSize: '1024x650',
+      windowSize: '1024x680',
       waitForNavigation: 'networkidle0',
       waitForAction: 1500,
       chrome: {
-        args: ['--no-sandbox', '--window-size=1024,650', '--disable-notifications', '--use-fake-ui-for-media-stream'],
+        args: ['--no-sandbox', '--window-size=1024,600', '--disable-notifications', '--use-fake-ui-for-media-stream'],
       }
     },
     FileSystem: {},
@@ -26,6 +26,11 @@ export const config: CodeceptJS.MainConfig = {
       require: './customhelper_helper.ts',
     },
   },
+  plugins: {
+    autoDelay: {
+      enabled: true
+    }
+ },
   include: {
     I: './steps_file'
   },
