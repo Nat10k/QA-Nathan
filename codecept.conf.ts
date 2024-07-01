@@ -19,7 +19,7 @@ export const config: CodeceptJS.MainConfig = {
       waitForAction: 1500,
       keepCookies: true,
       chrome: {
-        args: ['--no-sandbox', '--window-size=1024,600', '--disable-notifications', '--use-fake-ui-for-media-stream'],
+        args: ['--no-sandbox', '--window-size=1024,550', '--disable-notifications', '--use-fake-ui-for-media-stream'],
       }
     },
     FileSystem: {},
@@ -41,8 +41,7 @@ export const config: CodeceptJS.MainConfig = {
           login: (I) => I.loginTwitter(),
           // if we see `Admin` on page, we assume we are logged in
           check: (I) => {
-             I.seeInCurrentUrl('/home');
-             I.see('What is happening?!');
+             I.seeElement({css:'[data-testid="AppTabBar_Home_Link"]'});
           },
           fetch: () => {}, // empty function
           restore: () => {}, // empty funciton
