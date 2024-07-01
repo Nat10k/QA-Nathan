@@ -52,5 +52,6 @@ Scenario('unfollow all', async ({ I }) => {
             }
         });
     });
+    I.wait(5);
     I.dontSee('Following');
 });
