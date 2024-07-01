@@ -28,27 +28,29 @@ Scenario('search friend to follow',  async ({ I }) => {
 
 Scenario('unfollow all', async ({ I }) => {
     I.click({css:'[data-testid="AppTabBar_Profile_Link"]'});
-    I.click('Following');
+    I.wait(2);
+    I.click(locate('a').withText('Following'));
     // I.click('Following');
     I.executeScript(() => {
         var regExp = new RegExp('^Following @*');
         const followButtons = document.querySelectorAll('button');
-        // I.say(followButtons.toString());
         console.log(followButtons);
         const filteredButtons = Array.from(followButtons).filter(button => {
             return regExp.test(button.ariaLabel);
         });
         console.log(filteredButtons);
+        var delay = 1000;
         filteredButtons.forEach((e) => {
             if (e instanceof HTMLElement) {
+                e.click();
                 setTimeout(() => {
-                    e.click();
                     const unfollowConfirm = document.querySelector('[data-testid="confirmationSheetConfirm"]');
                     if (unfollowConfirm instanceof HTMLElement) {
                         unfollowConfirm.click();
                     }
-                }, 3000);
+                }, delay);
             }
         });
     });
+    I.dontSee('Following');
 });
