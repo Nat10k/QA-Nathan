@@ -3,7 +3,7 @@ const { heal, ai } = require('codeceptjs');
 heal.addRecipe('ai', {
   priority: 10,
   prepare: {
-    html: ({ I }) => I.grabHTMLFrom('body'),
+    html: ({ I }) => I.grabHTMLFrom({xpath:'//body'}),
   },
   steps: [
     'click',
