@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
 
-dotenv.config({path:'./twitter_test/.env'});
-const email = process.env.TWITTER_EMAIL;
-const password = process.env.TWITTER_PASSWORD;
+dotenv.config({path:'./facebook_test/.env'});
+const email = process.env.FACEBOOK_EMAIL;
+const password = process.env.FACEBOOK_PASSWORD;
 
 // in this file you can append custom step methods to 'I' object
 
@@ -32,6 +32,13 @@ export = function() {
         this.click('Log in');
         this.wait(1);
         this.waitForText('What is happening?!',waitTime);
+      },
+      loginFacebook: function() {
+        this.amOnPage('/');
+        this.fillField('email', email);
+        this.fillField('pass', password);
+        this.click('Masuk');
+        this.wait(waitTime);
       }
   });
 }
