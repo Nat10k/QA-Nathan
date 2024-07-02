@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import Groq from 'groq-sdk';
 dotenv.config({path:'.env'});
+require('./heal');
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -45,6 +46,9 @@ exports.config = {
   },
   plugins: {
     screenshotOnFail: {
+      enabled: true
+    },
+    heal: {
       enabled: true
     },
     autoDelay: {

@@ -7,7 +7,6 @@ Given('I am logged in as a user', () => {
 Given('I am on the welcome page', () => {
   // From "features\facebook_marketplace.feature" {"line":7,"column":5}
   I.amOnPage('/?sk=welcome');
-  I.executeScript(() => {console.log('welcome')});
   I.wait(5);
 });
 
@@ -15,7 +14,7 @@ When('I click Marketplace', () => {
   // From "features\facebook_marketplace.feature" {"line":8,"column":5}
   I.click('Lainnya');
   I.waitForText('Marketplace', 20);
-  I.forceClick(locate('a').withDescendant(locate('span').withText('Marketplace')));
+  I.forceClick('Marketplace');
   I.waitForText('Pilihan Hari Ini', 20);
 });
 
