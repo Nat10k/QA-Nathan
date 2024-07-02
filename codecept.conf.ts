@@ -1,8 +1,14 @@
+import * as dotenv from 'dotenv';
+import Groq from 'groq-sdk';
+dotenv.config({path:'.env'});
+
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
 exports.config = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'https://www.facebook.com/',
+      url: 'https://www.facebook.com',
       show: true,
       restart: false,
       windowSize: '1024x680',
@@ -33,7 +39,9 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: './features/*.feature',
-    steps: ['./step_definitions/steps.ts']
+    steps: ['./step_definitions/steps.ts',
+            './step_definitions/marketplace_steps.ts'
+    ]
   },
   plugins: {
     screenshotOnFail: {
@@ -48,13 +56,13 @@ exports.config = {
       inject: 'login',
       users: {
         user: {
-          login: [(I : any) => {I.loginFacebook()}],
-          check: [(I : any) => {
+          login: (I : any) => {I.loginFacebook()},
+          check: (I : any) => {
             I.amOnPage('/?sk=welcome');
-            I.see('Selamat datang di Facebook');
-          }],
-          fetch: [() => {}],
-          restore: [() => {}]
+            I.dontSee('Log in');
+          },
+          fetch: () => {},
+          restore: () => {}
         }
       }
     },
@@ -72,15 +80,20 @@ exports.config = {
     },
     pauseOnFail: {}
   },
+  ai: {
+    request: async (messages) => {
+      const chatCompletion = await groq.chat.completions.create({
+          messages,
+          model: "mixtral-8x7b-32768",
+      });
+      return chatCompletion.choices[0]?.message?.content || "";
+    }
+  },
   stepTimeout: 0,
   stepTimeoutOverride: [{
       pattern: 'wait.*',
       timeout: 0
     },
-    {
-      pattern: 'amOnPage',
-      timeout: 0
-    }
   ],
   tests: './*_test/*_test.ts',
   name: 'QA'

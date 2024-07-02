@@ -1,4 +1,3 @@
-import { time } from 'console';
 import * as dotenv from 'dotenv';
 
 dotenv.config({path:'./twitter_test/.env'});

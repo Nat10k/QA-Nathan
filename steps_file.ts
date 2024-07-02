@@ -37,7 +37,7 @@ export = function() {
         this.amOnPage('/');
         this.fillField('email', email);
         this.fillField('pass', password);
-        this.click('Masuk');
+        this.click('Log in');
         this.wait(waitTime);
       }
   });

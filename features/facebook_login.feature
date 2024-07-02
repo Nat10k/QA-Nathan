@@ -3,7 +3,7 @@ Feature: Facebook Login
   As a user
   I want to be able to login to my Facebook account
 
-  Scenario: do something
+  Scenario: login
     Given I am on the login page
     When I enter my username and password
     And I click Log In
