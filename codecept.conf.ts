@@ -64,10 +64,28 @@ exports.config = {
       saveToFile: true,
       inject: 'login',
       users: {
-        user: {
+        facebook: {
           login: (I : any) => {I.loginFacebook()},
           check: (I : any) => {
             I.amOnPage('/?sk=welcome');
+            I.dontSee('Log in');
+          },
+          fetch: () => {return "test"},
+          restore: () => {}
+        },
+        twitter: {
+          login: (I : any) => {I.loginTwitter()},
+          check: (I : any) => {
+            I.amOnPage('https://x.com/home?lang=en');
+            I.see('What is happening?!');
+          },
+          fetch: () => {return "test"},
+          restore: () => {}
+        },
+        spotify: {
+          login: (I : any) => {I.loginSpotify()},
+          check: (I : any) => {
+            I.amOnPage('https://open.spotify.com/');
             I.dontSee('Log in');
           },
           fetch: () => {return "test"},

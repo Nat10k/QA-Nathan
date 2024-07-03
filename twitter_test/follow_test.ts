@@ -6,7 +6,7 @@ const friend = process.env.TWITTER_FRIEND_ID;
 Feature('follow');
 
 Before(({ I, login }) => {
-    login('user');
+    login('twitter');
     I.wait(5);
 });
 

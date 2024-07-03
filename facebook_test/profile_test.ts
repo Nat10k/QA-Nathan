@@ -2,23 +2,13 @@ import * as dotenv from 'dotenv';
 import { makeFakeAvatar } from '../data-faker';
 
 dotenv.config({path:'./facebook_test/.env'});
-const email = process.env.FACEBOOK_EMAIL;
 const firstName = process.env.FACEBOOK_FIRST_NAME;
 const lastName = process.env.FACEBOOK_LAST_NAME;
-const password = process.env.FACEBOOK_PASSWORD;
-const baseURL = "https://id-id.facebook.com"
 
 Feature('profile');
 
-const waitTime = 5;
-
 Before(({ I }) => {
-    // Login
-    I.amOnPage(baseURL);
-    I.fillField('email', email);
-    I.fillField('pass', secret(password));
-    I.click('Masuk');
-    I.wait(waitTime);
+    login('facebook');
 })
 
 Scenario('add/edit profile photo', async ({ I }) => {

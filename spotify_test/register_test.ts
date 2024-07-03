@@ -10,7 +10,7 @@ Feature('register');
 const waitTime = 10;
 
 Before(({ I }) => {
-    I.openSignUp();
+    I.openSignUpSpotify();
 })
 
 Scenario('invalid email', async ({ I }) => {

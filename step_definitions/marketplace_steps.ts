@@ -1,7 +1,7 @@
 const { I, login } = inject();
 
 Given('I am logged in as a user', () => {
-    login('user');
+    login('facebook');
 });
 
 Given('I am on the welcome page', () => {

@@ -1,22 +1,8 @@
-import * as dotenv from 'dotenv';
-
-dotenv.config({path:'./facebook_test/.env'});
-const email = process.env.FACEBOOK_EMAIL;
-const password = process.env.FACEBOOK_PASSWORD;
-const baseURL = "https://id-id.facebook.com"
-
 Feature('like');
 
-const waitTime = 5;
-
 Before(({ I }) => {
-    // Login
-    I.amOnPage(baseURL);
-    I.fillField('email', email);
-    I.fillField('pass', secret(password));
-    I.click('Masuk');
-    I.wait(waitTime);
-});
+    login('facebook');
+})
 
 Scenario('like self post', async ({ I }) => {
     I.click('Beranda');

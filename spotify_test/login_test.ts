@@ -10,7 +10,7 @@ Feature('login');
 const waitTime = 10;
 
 Before(({ I }) => {
-    I.openLogIn();
+    I.openLogInSpotify();
 })
 
 Scenario('wrong email', async ({ I }) => {
