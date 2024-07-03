@@ -7,7 +7,7 @@ const lastName = process.env.FACEBOOK_LAST_NAME;
 const password = process.env.FACEBOOK_PASSWORD;
 const baseURL = "https://id-id.facebook.com"
 
-Feature('register');
+Feature('register facebook');
 
 Before(({ I }) => {
     I.amOnPage(baseURL);

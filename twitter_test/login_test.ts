@@ -5,7 +5,7 @@ const email = process.env.TWITTER_EMAIL;
 const password = process.env.TWITTER_PASSWORD;
 const baseURL = "https://x.com/?lang=en"
 
-Feature('login');
+Feature('login twitter');
 
 const waitTime = 10;
 

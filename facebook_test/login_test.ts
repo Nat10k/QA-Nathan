@@ -6,7 +6,7 @@ const firstName = process.env.FACEBOOK_FIRST_NAME;
 const password = process.env.FACEBOOK_PASSWORD;
 const baseURL = "https://id-id.facebook.com"
 
-Feature('login');
+Feature('login facebook');
 
 const waitTime = 2;
 

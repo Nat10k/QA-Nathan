@@ -5,7 +5,7 @@ const username = process.env.SPOTIFY_EMAIL;
 const password = process.env.SPOTIFY_PASSWORD;
 
 // Base URL : https://open.spotify.com/
-Feature('login');
+Feature('login spotify');
 
 const waitTime = 10;
 

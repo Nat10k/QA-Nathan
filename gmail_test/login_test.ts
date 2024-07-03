@@ -5,7 +5,7 @@ const email = process.env.GMAIL_EMAIL;
 const password = process.env.GMAIL_PASSWORD;
 const baseURL = "https://gmail.com/"
 
-Feature('register');
+Feature('login gmail');
 
 Before(({ I }) => {
     I.amOnPage(baseURL);

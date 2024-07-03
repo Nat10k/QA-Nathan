@@ -10,7 +10,7 @@ const baseURL = "https://gmail.com/"
 
 const waitTime = 20;
 
-Feature('register');
+Feature('register gmail');
 
 Before(({ I }) => {
     I.amOnPage(baseURL);
