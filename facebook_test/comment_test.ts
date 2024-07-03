@@ -19,15 +19,15 @@ Before(({ I }) => {
 });
 
 Scenario('comment on one post', async ({ I }) => {
-    I.click('Beranda');
+    I.click(locate('a').withAttr({'aria-label':'Beranda'}));
     // Comment on first found post
-    I.click('Komentari');
-    I.fillField('Tulis komentar...', 'hellow world');
+    I.click(locate('div').withAttr({'aria-label':'Beri komentar'}).first());
+    I.fillField(locate('div').withAttr({'aria-label':'Tulis komentar...', role:'textbox'}), 'hellow world');
     I.click('Komentari');
 });
 
 Scenario('100.000 words comment', async ({ I }) => {
-    I.click('Beranda');
-    I.fillField('Tulis komentar...', process.env.LONG_COMMENT); // Facebook has character limit although not shown
+    I.click(locate('a').withAttr({'aria-label':'Beranda'}));
+    I.fillField(locate('div').withAttr({'aria-label':'Tulis komentar...', role:'textbox'}), process.env.LONG_COMMENT); // Facebook has character limit although not shown
     I.click('Komentari');
 });

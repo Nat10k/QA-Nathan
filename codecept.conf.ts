@@ -48,6 +48,11 @@ exports.config = {
     screenshotOnFail: {
       enabled: true
     },
+    testomatio: {
+      enabled: true,
+      require: '@testomatio/reporter/lib/adapter/codecept',
+      apiKey: process.env.TESTOMATIO,
+    },
     heal: {
       enabled: true
     },
