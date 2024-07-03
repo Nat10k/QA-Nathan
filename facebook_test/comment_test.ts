@@ -9,25 +9,22 @@ Feature('comment');
 
 const waitTime = 5;
 
-Before(({ I }) => {
+Scenario('comment on one post', async ({ I }) => {
     // Login
     I.amOnPage(baseURL);
     I.fillField('email', email);
     I.fillField('pass', password);
     I.click('Masuk');
     I.wait(waitTime);
-});
-
-Scenario('comment on one post', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
     // Comment on first found post
     I.click(locate('div').withAttr({'aria-label':'Beri komentar'}).first());
-    I.fillField(locate('div').withAttr({'aria-label':'Tulis komentar...', role:'textbox'}), 'hellow world');
-    I.click('Komentari');
+    I.fillField(locate('div').withAttr({'aria-label':'Tulis komentar...', role:'textbox'}).first(), 'hellow world');
+    I.click(locate('div').withAttr({'aria-label':'Komentari', role:'button'}).first());
 });
 
 Scenario('100.000 words comment', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
     I.fillField(locate('div').withAttr({'aria-label':'Tulis komentar...', role:'textbox'}), process.env.LONG_COMMENT); // Facebook has character limit although not shown
-    I.click('Komentari');
+    I.click(locate('div').withAttr({'aria-label':'Komentari', role:'button'}).first());
 });
