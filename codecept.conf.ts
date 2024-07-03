@@ -65,7 +65,7 @@ exports.config = {
             I.amOnPage('/?sk=welcome');
             I.dontSee('Log in');
           },
-          fetch: () => {},
+          fetch: () => {return "test"},
           restore: () => {}
         }
       }

@@ -15,3 +15,8 @@ Feature: Facebook Marketplace
     Given I am on the marketplace page
     When I click one of the items
     Then I should see details of the item
+  
+  Scenario: see seller detail
+    Given I am on an item detail page
+    When I click seller detail
+    Then I should see the seller's details

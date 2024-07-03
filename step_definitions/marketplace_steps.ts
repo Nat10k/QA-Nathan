@@ -12,15 +12,14 @@ Given('I am on the welcome page', () => {
 
 When('I click Marketplace', () => {
   // From "features\facebook_marketplace.feature" {"line":8,"column":5}
-  I.click('Lainnya');
+  I.click('[aria-label="Lainnya"]');
   I.waitForText('Marketplace', 20);
   I.forceClick('Marketplace');
-  I.waitForText('Pilihan Hari Ini', 20);
 });
 
 Then('I should see items in the marketplace', () => {
   // From "features\facebook_marketplace.feature" {"line":9,"column":5}
-  I.see('Pilihan Hari Ini');
+  I.waitForText('Pilihan Hari Ini', 20);
 });
 
 Given('I am on the marketplace page', () => {
@@ -36,4 +35,21 @@ When('I click one of the items', () => {
 Then('I should see details of the item', () => {
   // From "features\facebook_marketplace.feature" {"line":14,"column":5}
   I.waitForText('Detail', 10);
+});
+
+Given('I am on an item detail page', () => {
+  // From "features\facebook_marketplace.feature" {"line":19,"column":5}
+  I.amOnPage('/marketplace/?ref=bookmark');
+  I.click('a.x1i10hfl.xjbqb8w.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x1ypdohk.xt0psk2.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x16tdsg8.x1hl2dhg.xggy1nq.x1a2a7pz.x1heor9g.x1sur9pj.xkrqix3.x1lku1pv:nth-child(1)');
+  I.waitForText('Detail', 10);
+});
+
+When('I click seller detail', () => {
+  // From "features\facebook_marketplace.feature" {"line":20,"column":5}
+  I.click('//a[contains(., "Detail penjual")]');
+});
+
+Then('I should see the seller\'s details', () => {
+  // From "features\facebook_marketplace.feature" {"line":21,"column":5}
+  I.seeInCurrentUrl('/marketplace/profile/');
 });

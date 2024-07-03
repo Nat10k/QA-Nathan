@@ -34,6 +34,7 @@ export = function() {
         this.waitForText('What is happening?!',waitTime);
       },
       loginFacebook: function() {
+        this.say('Logging in Facebook');
         this.amOnPage('/');
         this.fillField('email', email);
         this.fillField('pass', password);
