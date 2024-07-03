@@ -40,7 +40,7 @@ Scenario('wrong password', async ({ I }) => {
 Scenario('complete login', async ({ I }) => {
     // Search based on id
     I.fillField('#login-username', username);
-    I.fillField('#login-password', password);
+    I.fillField('#login-password', secret(password));
     I.click('Masuk');
     I.wait(waitTime);
     I.dontSee('Masuk');

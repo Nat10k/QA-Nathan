@@ -41,7 +41,7 @@ Scenario('complete register',  async ({ I }) => {
     I.fillField('Email or phone', email);
     I.click('Next');
     
-    I.fillField('Enter your password', password);
+    I.fillField('Enter your password', secret(password));
     I.click('Next');
     pause();
 });

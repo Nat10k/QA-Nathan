@@ -57,7 +57,7 @@ Scenario('complete signup',  async ({ I }) => {
     I.click('Next');
     I.wait(waitTime);
     I.see('Create a password');
-    I.fillField('Password', password);
+    I.fillField('Password', secret(password));
     I.waitForValue('#new-password', password, 5);
     I.click('Next');
     I.wait(waitTime);

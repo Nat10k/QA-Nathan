@@ -55,7 +55,7 @@ Scenario('complete register',  async ({ I }) => {
     I.selectOption('Year', '2002');
     I.click('Next');
     I.wait(60); // Wait until verification is done
-    I.fillField('Password', password);
+    I.fillField('Password', secret(password));
     I.click('Sign up');
     I.waitForText('What is happening?!',waitTime);
 });

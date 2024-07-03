@@ -14,7 +14,7 @@ Before(({ I }) => {
     // Login
     I.amOnPage(baseURL);
     I.fillField('email', email);
-    I.fillField('pass', password);
+    I.fillField('pass', secret(password));
     I.click('Masuk');
     I.wait(waitTime);
 })

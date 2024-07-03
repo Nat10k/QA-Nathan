@@ -54,8 +54,8 @@ Scenario('empty fields', async ({ I }) => {
     I.click('Next');
     I.click('Next');
     I.see('Enter a password');
-    I.fillField('Password', password);
-    I.fillField('Confirm', password);
+    I.fillField('Password', secret(password));
+    I.fillField('Confirm', secret(password));
     I.click('Next');
     I.click('Next');
     I.see('Please enter a phone number');
@@ -88,7 +88,7 @@ Scenario('invalid email, password, phone',  async ({ I }) => {
 
     // Password
     // Passwords don't match
-    I.fillField('Password', password);
+    I.fillField('Password', secret(password));
     I.fillField('Confirm', 'blkdoea');
     I.click('Next');
     I.see('Those passwords did');
@@ -105,8 +105,8 @@ Scenario('invalid email, password, phone',  async ({ I }) => {
     I.click('Next');
     I.see('Please choose a stronger password. Try a mix of letters, numbers, and symbols.');
     
-    I.fillField('Password', password);
-    I.fillField('Confirm', password);
+    I.fillField('Password', secret(password));
+    I.fillField('Confirm', secret(password));
     I.click('Next');
 
     // Phone number
@@ -135,8 +135,8 @@ Scenario('complete register',  async ({ I }) => {
     I.click('Next');
 
     // Password
-    I.fillField('Password', password);
-    I.fillField('Confirm', password);
+    I.fillField('Password', secret(password));
+    I.fillField('Confirm', secret(password));
     I.click('Next');
 
     // Phone number

@@ -23,7 +23,7 @@ Scenario('empty fields', async ({ I }) => {
     I.wait(waitTime);
     I.see('Kredensial Salah');
     I.clearField('email');
-    I.fillField('pass', password);
+    I.fillField('pass', secret(password));
     I.click('Masuk');
     I.wait(waitTime);
     I.see('Kredensial Salah');
@@ -31,7 +31,7 @@ Scenario('empty fields', async ({ I }) => {
 
 Scenario('wrong credentials', async ({ I }) => { // Facebook doesn't handle spaces in email
     I.fillField('email', 'lolololololol@gmail.com');
-    I.fillField('pass', password);
+    I.fillField('pass', secret(password));
     I.click('Masuk');
     I.wait(waitTime);
     I.see('Kredensial Salah');
@@ -45,7 +45,7 @@ Scenario('wrong credentials', async ({ I }) => { // Facebook doesn't handle spac
 
 Scenario('complete login',  async ({ I }) => {
     I.fillField('email', email);
-    I.fillField('pass', password);
+    I.fillField('pass', secret(password));
     I.click('Masuk');
     I.wait(waitTime);
     I.see(firstName);

@@ -27,7 +27,7 @@ Scenario('invalid email', async ({ I }) => { // Facebook doesn't handle spaces i
     I.fillField('firstname', firstName);
     I.fillField('lastname', lastName);
     I.selectOption('#year', '2003');
-    I.fillField('reg_passwd__', password);
+    I.fillField('reg_passwd__', secret(password));
     I.checkOption('Laki-laki');
 
     // Search based on name
@@ -84,7 +84,7 @@ Scenario('complete signup',  async ({ I }) => {
     I.fillField('reg_email__', email);
     I.fillField('reg_email_confirmation__', email);
     I.checkOption('Laki-laki');
-    I.fillField('reg_passwd__', password);
+    I.fillField('reg_passwd__', secret(password));
     I.click('websubmit');
     I.wait(5);
     I.see(firstName);

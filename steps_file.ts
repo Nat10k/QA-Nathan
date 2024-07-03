@@ -27,7 +27,7 @@ export = function() {
         this.fillField('Phone, email, or username', email);
         this.click('Next');
         pause(); // Handle suspicious login activity
-        this.fillField('password', password);
+        this.fillField('password', secret(password));
         this.wait(2);
         this.click('Log in');
         this.wait(1);
@@ -37,7 +37,7 @@ export = function() {
         this.say('Logging in Facebook');
         this.amOnPage('/');
         this.fillField('email', email);
-        this.fillField('pass', password);
+        this.fillField('pass', secret(password));
         this.click('Log in');
         this.wait(waitTime);
       }

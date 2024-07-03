@@ -15,7 +15,7 @@ Given('I am on the login page', () => {
 When('I enter my username and password', () => {
   // From "features\facebook_login.feature" {"line":8,"column":5}
   I.fillField('email', email);
-  I.fillField('pass', password);
+  I.fillField('pass', secret(password));
 });
 
 When('I click Log In', () => {

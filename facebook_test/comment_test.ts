@@ -13,7 +13,7 @@ Scenario('comment on one post', async ({ I }) => {
     // Login
     I.amOnPage(baseURL);
     I.fillField('email', email);
-    I.fillField('pass', password);
+    I.fillField('pass', secret(password));
     I.click('Masuk');
     I.wait(waitTime);
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
