@@ -1,6 +1,6 @@
 Feature('game');
 
-Before(({ I }) => {
+Before(({ login }) => {
     login('facebook');
 })
 

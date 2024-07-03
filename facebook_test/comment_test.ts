@@ -1,6 +1,6 @@
 Feature('comment');
 
-Before(({ I }) => {
+Before(({ login }) => {
     login('facebook');
 })
 

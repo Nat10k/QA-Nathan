@@ -1,6 +1,6 @@
 Feature('like');
 
-Before(({ I }) => {
+Before(({ login }) => {
     login('facebook');
 })
 

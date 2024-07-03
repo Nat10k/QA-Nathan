@@ -8,7 +8,7 @@ Feature('group');
 
 const waitTime = 10;
 
-Before(({ I }) => {
+Before(({ login }) => {
     login('facebook');
 })
 

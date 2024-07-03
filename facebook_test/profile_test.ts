@@ -7,7 +7,7 @@ const lastName = process.env.FACEBOOK_LAST_NAME;
 
 Feature('profile');
 
-Before(({ I }) => {
+Before(({ login }) => {
     login('facebook');
 })
 

@@ -6,9 +6,7 @@ const friendProfile = process.env.FACEBOOK_FRIEND_PROFILE;
 
 Feature('friend');
 
-const waitTime = 5;
-
-Before(({ I }) => {
+Before(({ login }) => {
     login('facebook');
 })
 
