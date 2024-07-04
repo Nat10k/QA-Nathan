@@ -12,6 +12,10 @@ dotenv.config({path:'./spotify_test/.env'});
 const spotifyUsername = process.env.SPOTIFY_EMAIL;
 const spotifyPassword = process.env.SPOTIFY_PASSWORD;
 
+dotenv.config({path:'./six_test/.env'});
+const sixEmail = process.env.SIX_EMAIL;
+const sixPassword = process.env.SIX_PASSWORD;
+
 // in this file you can append custom step methods to 'I' object
 
 const waitTime = 10;
@@ -42,7 +46,6 @@ export = function() {
         this.waitForText('What is happening?!',waitTime);
       },
       loginFacebook: function() {
-        this.say('Logging in Facebook');
         this.amOnPage('/');
         this.fillField('email', facebookEmail);
         this.fillField('pass', secret(facebookPassword));
@@ -50,12 +53,22 @@ export = function() {
         this.wait(waitTime);
       },
       loginSpotify: function() {
-        // Search based on id
-        I.openLogInSpotify();
-        I.fillField('#login-username', spotifyUsername);
-        I.fillField('#login-password', secret(facebookPassword));
-        I.click('Masuk');
-        I.wait(waitTime);
+        this.openLogInSpotify();
+        this.fillField('#login-username', spotifyUsername);
+        this.fillField('#login-password', secret(spotifyPassword));
+        this.click('Masuk');
+        this.wait(waitTime);
+      },
+      loginSIX: function() {
+        this.amOnPage('https://six.itb.ac.id/');
+        this.click('Login');
+        this.click('Login dengan ITB Account');
+        this.fillField('loginfmt', sixEmail);
+        this.click('Next');
+        this.fillField('passwd', secret(sixPassword));
+        this.click('Sign in');
+        pause();
+        I.see('Status Mahasiswa');
       }
   });
 }

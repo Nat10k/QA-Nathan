@@ -33,7 +33,11 @@ exports.config = {
   include: {
     I: './steps_file'
   },
-  mocha: {},
+  mocha: {
+    reporterOptions: {
+        reportDir: "output"
+    }
+  },
   bootstrap: null,
   timeout: null,
   teardown: null,
@@ -87,6 +91,15 @@ exports.config = {
           check: (I : any) => {
             I.amOnPage('https://open.spotify.com/');
             I.dontSee('Log in');
+          },
+          fetch: () => {return "test"},
+          restore: () => {}
+        },
+        six: {
+          login: (I : any) => {I.loginSIX()},
+          check: (I : any) => {
+            I.amOnPage('https://six.itb.ac.id/home');
+            I.see('Status Mahasiswa');
           },
           fetch: () => {return "test"},
           restore: () => {}
