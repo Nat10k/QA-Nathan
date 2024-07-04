@@ -62,13 +62,16 @@ export = function() {
       loginSIX: function() {
         this.amOnPage('https://six.itb.ac.id/');
         this.click('Login');
+        this.wait(2);
         this.click('Login dengan ITB Account');
-        this.fillField('loginfmt', sixEmail);
+        this.wait(3);
+        this.fillField(locate('input').withAttr({name:'loginfmt'}), sixEmail);
         this.click('Next');
-        this.fillField('passwd', secret(sixPassword));
+        this.wait(5);
+        this.fillField(locate('input').withAttr({name:'passwd'}), secret(sixPassword));
         this.click('Sign in');
         pause();
-        I.see('Status Mahasiswa');
+        this.waitForText('Status Mahasiswa', 10);
       }
   });
 }
