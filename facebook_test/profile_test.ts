@@ -12,7 +12,7 @@ Before(({ login }) => {
 })
 
 Scenario('add/edit profile photo', async ({ I }) => {
-    I.click('Profil Anda');
+    I.click(locate('div').withAttr({'aria-label':'Profil Anda'}));
     I.click(firstName + " " + lastName);
     I.click('Tindakan foto profil');
     I.click(locate('div').withAttr({'role':'menuitem'}).withText('Pilih foto profil'));
@@ -23,7 +23,7 @@ Scenario('add/edit profile photo', async ({ I }) => {
 });
 
 Scenario('add/edit cover photo', async ({ I }) => {
-    I.click('Profil Anda');
+    I.click(locate('div').withAttr({'aria-label':'Profil Anda'}));
     I.click(firstName + " " + lastName);
     // Upload image
     await makeFakeAvatar('testAvatar.jpg');

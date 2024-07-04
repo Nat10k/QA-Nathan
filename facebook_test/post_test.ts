@@ -9,7 +9,7 @@ Before(({ login }) => {
 })
 
 Scenario('post text', async ({ I }) => { // Facebook doesn't handle spaces in email
-    I.click('Buat');
+    I.click(locate('div').withAttr({'aria-label':'Buat', role:'button'}));
     I.click(locate('div').withAttr({'role':'button'}).withDescendant(locate('span').withText('Posting'))); // Posting button
     I.fillField(locate('div').withAttr({'role':'textbox'}),'test'); // Post textbox
     I.see('test');
@@ -21,7 +21,7 @@ Scenario('post text', async ({ I }) => { // Facebook doesn't handle spaces in em
 });
 
 Scenario('post text and photo', async ({ I }) => { // Facebook doesn't handle spaces in email
-    I.click('Buat');
+    I.click(locate('div').withAttr({'aria-label':'Buat', role:'button'}));
     I.click(locate('div').withAttr({'role':'button'}).withDescendant(locate('span').withText('Posting'))); // Posting button
     I.fillField(locate('div').withAttr({'role':'textbox'}),'test photo'); // Post textbox
     I.see('test photo');
@@ -36,7 +36,7 @@ Scenario('post text and photo', async ({ I }) => { // Facebook doesn't handle sp
 });
 
 Scenario('upload non-image file on photo post', async ({ I }) => { // Facebook doesn't handle spaces in email
-    I.click('Buat');
+    I.click(locate('div').withAttr({'aria-label':'Buat', role:'button'}));
     I.click(locate('div').withAttr({'role':'button'}).withDescendant(locate('span').withText('Posting'))); // Posting button
     I.fillField(locate('div').withAttr({'role':'textbox'}),'test photo'); // Post textbox
     I.see('test photo');

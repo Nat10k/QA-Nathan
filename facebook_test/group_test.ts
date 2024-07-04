@@ -45,6 +45,7 @@ Scenario('post text in group', async ({ I }) => {
     I.see('Beranda komunitas');
 
     // Normal text post
+    I.scrollPageToBottom();
     I.click(locate('div').withAttr({role:'button'}).withDescendant(locate('span').withText('Tulis sesuatu...')));
     I.type('Post test');
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Posting'}));
@@ -62,6 +63,7 @@ Scenario('anonymous photo post in group', async ({ I }) => {
     I.see('Beranda komunitas');
 
     // Anonymous photo post
+    I.scrollPageToBottom();
     I.click(locate('div').withAttr({role:'button'}).withDescendant(locate('span').withTextEquals('Postingan Anonim')));
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Buat Postingan Anonim'}).inside(locate('div').withAttr({role:'dialog'})));
     I.type('Anonymous test');
