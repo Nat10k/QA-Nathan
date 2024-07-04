@@ -15,7 +15,7 @@ Scenario('post text', async ({ I }) => { // Facebook doesn't handle spaces in em
     I.see('test');
     I.click('Kirim');
     I.wait(waitTime);
-    I.click('Beranda');
+    I.click(locate('a').withAttr({'aria-label':'Beranda'}));
     I.wait(waitTime);
     I.see('test');
 });
@@ -30,7 +30,7 @@ Scenario('post text and photo', async ({ I }) => { // Facebook doesn't handle sp
     I.attachFile('form input[type="file"]', 'testAvatar.jpg');
     I.click('Kirim');
     I.wait(waitTime);
-    I.click('Beranda');
+    I.click(locate('a').withAttr({'aria-label':'Beranda'}));
     I.wait(waitTime);
     I.see('test photo');
 });
@@ -45,7 +45,7 @@ Scenario('upload non-image file on photo post', async ({ I }) => { // Facebook d
     I.attachFile('form input[type="file"]', 'fakeText.txt'); // File is uploaded but no picture is shown
     I.click('Kirim');
     I.wait(waitTime);
-    I.click('Beranda');
+    I.click(locate('a').withAttr({'aria-label':'Beranda'}));
     I.wait(waitTime);
     I.see('test photo');
 });

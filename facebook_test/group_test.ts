@@ -16,7 +16,7 @@ Scenario('make new group', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
     I.click('Buat Grup Baru');
     I.fillField('Nama Grup', groupName);
-    I.click('Pilih privasi');
+    I.click(locate('div').withClassAttr('x78zum5 xdt5ytf xh8yej3').withChild(locate('label').withAttr({'aria-label':'Pilih privasi'})));
     I.click(locate('div').withAttr({'role':'option'}).
         withDescendant(locate('div').withDescendant('div').withDescendant('div').withDescendant('span').withText('Privat')));
     // Try cellular preview

@@ -13,8 +13,7 @@ Before(({ login }) => {
 Scenario('add friend', async ({ I }) => {
     I.amOnPage(friendProfile);
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Tambahkan teman'}));
-    I.wait(1);
-    I.see('Batalkan permintaan');
+    pause(); // Terima permintaan di akun satunya
 });
 
 Scenario('chat', async ({ I }) => {
@@ -52,4 +51,12 @@ Scenario('chat', async ({ I }) => {
     I.wait(2);
     I.pressKey('Enter');
     I.see('Terkirim');
+});
+
+Scenario('unfriend', async ({ I }) => {
+    I.amOnPage(friendProfile);
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Teman'}));
+    I.wait(2);
+    I.click(locate('div').withAttr({role:'menuitem'}).withDescendant(locate('span').withText('Hapus pertemanan')));
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Konfirmasi'}));
 });

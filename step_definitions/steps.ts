@@ -21,7 +21,7 @@ When('I enter my username and password', () => {
 When('I click Log In', () => {
   // From "features\facebook_login.feature" {"line":9,"column":5}
   I.click('Log in');
-  I.wait(5);
+  I.wait(10);
 });
 
 Then('I should see my Facebook dashboard', () => {
