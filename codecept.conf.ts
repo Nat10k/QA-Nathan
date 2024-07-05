@@ -45,7 +45,8 @@ exports.config = {
   gherkin: {
     features: './features/*.feature',
     steps: ['./step_definitions/steps.ts',
-            './step_definitions/marketplace_steps.ts'
+            './step_definitions/marketplace_steps.ts',
+            './step_definitions/spotify_steps.ts'
     ]
   },
   plugins: {
@@ -124,7 +125,7 @@ exports.config = {
     request: async (messages) => {
       const chatCompletion = await groq.chat.completions.create({
           messages,
-          model: "mixtral-8x7b-32768",
+          model: "llama3-8b-8192",
       });
       return chatCompletion.choices[0]?.message?.content || "";
     }

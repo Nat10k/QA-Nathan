@@ -53,3 +53,5 @@ Then('I should see the seller\'s details', () => {
   // From "features\facebook_marketplace.feature" {"line":21,"column":5}
   I.seeInCurrentUrl('/marketplace/profile/');
 });
+
+export {};
