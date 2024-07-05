@@ -1,3 +1,5 @@
+import { makeFakeAvatar } from "../data-faker";
+
 const { I, login } = inject();
 
 Given('I am logged in as a user', () => {
@@ -60,6 +62,59 @@ When('I click {string} category', (val) => {
 Then('I should see {string} in the filtered results', (val) => {
   // From "features\spotify_search.feature" {"line":25,"column":5}
   I.waitForElement(locate('p').withAttr({'title': val}));
+});
+
+When('I click the profile button', () => {
+  // From "features\spotify_profile.feature" {"line":10,"column":5}
+  I.click(locate('button').withChild(locate('span').withText('N')).inside(locate('header')));
+  I.click(locate('a').withChild(locate('span').withText('Profile')).inside(locate('div').withAttr({id:'context-menu'})));
+});
+
+Then('I should see profile', () => {
+  // From "features\spotify_profile.feature" {"line":11,"column":5}
+  I.waitForText('Profile', 30);
+});
+
+Given('I am on my profile page', () => {
+  // From "features\spotify_profile.feature" {"line":14,"column":5}
+  I.amOnPage('https://open.spotify.com/user/316ocudvvtlazgimc5bd2mxmfuye');
+});
+
+When('I click the more options button', () => {
+  // From "features\spotify_profile.feature" {"line":15,"column":5}
+  I.click(locate('button').withAttr({'data-testid':'more-button'}));
+});
+
+When('I click edit profile', () => {
+  // From "features\spotify_profile.feature" {"line":16,"column":5}
+  I.click(locate('button').withDescendant(locate('span').withText('Edit profile')));
+});
+
+When('I upload my profile picture', async () => {
+  // From "features\spotify_profile.feature" {"line":17,"column":5}
+  await makeFakeAvatar('fakeAvatar.jpg');
+  I.attachFile(locate('input').withAttr({type:'file','data-testid':'image-file-picker'}).inside(locate('div').withAttr({role:'dialog'})), 'fakeAvatar.jpg');
+  I.wait(5);
+});
+
+When('I save', () => {
+  // From "features\spotify_profile.feature" {"line":18,"column":5}
+  I.click(locate('button').withChild(locate('span').withText('Save')).inside(locate('div').withAttr({role:'dialog'})));
+});
+
+Then('I should see profile and my new profile picture', () => {
+  // From "features\spotify_profile.feature" {"line":19,"column":5}
+  I.waitForText('Profile', 5);
+});
+
+When('I click remove photo', () => {
+  // From "features\spotify_profile.feature" {"line":24,"column":5}
+  I.click(locate('button').withChild(locate('span').withText('Remove photo')).inside(locate('div').withAttr({role:'dialog'})));
+});
+
+Then('I should see profile and my profile picture empty', () => {
+  // From "features\spotify_profile.feature" {"line":25,"column":5}
+  I.waitForText('Profile',5);
 });
 
 export {}

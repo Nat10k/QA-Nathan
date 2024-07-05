@@ -4,6 +4,8 @@ Feature: spotify search
   As a user
   I want to be able to search for music / podcasts / artists
 
+  Background:
+    Given I am logged in as a user
 
   Scenario: search an artist
     Given I am on the home page
