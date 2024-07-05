@@ -6,7 +6,7 @@ const waitTime = 10;
 
 Before(({ login }) => {
     login('facebook');
-})
+});
 
 Scenario('basic text story', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
@@ -16,7 +16,7 @@ Scenario('basic text story', async ({ I }) => {
     I.click(locate('div').inside(locate('div').withAttr({'aria-label':'Bagikan ke Cerita'})));
     I.wait(waitTime);
     I.see('Cerita Anda');
-});
+}).tag('@facebook');
 
 Scenario('edited text story', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
@@ -29,7 +29,7 @@ Scenario('edited text story', async ({ I }) => {
     I.click(locate('div').withAttr({'aria-pressed':'false', 'aria-label':'Ilustrasi merah, gambar latar belakang'}));
     I.wait(waitTime);
     I.see('Cerita Anda');
-});
+}).tag('@facebook');
 
 Scenario('photo story', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
@@ -39,7 +39,7 @@ Scenario('photo story', async ({ I }) => {
     I.click(locate('div').inside(locate('div').withAttr({'aria-label':'Bagikan ke Cerita'})));
     I.wait(waitTime);
     I.see('Cerita Anda');
-});
+}).tag('@facebook');
 
 Scenario('cancel making story', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
@@ -50,7 +50,7 @@ Scenario('cancel making story', async ({ I }) => {
     I.click(locate('div').withAttr({'aria-label':'Tutup'}).inside(locate('div').withAttr({role:'banner'})));
     I.wait(3);
     I.see('Buat cerita');
-});
+}).tag('@facebook');
 
 Scenario('view self story', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
@@ -60,4 +60,4 @@ Scenario('view self story', async ({ I }) => {
     I.click(locate('div').withAttr({'aria-label':'Kartu sebelumnya'}));
     I.click(locate('div').withAttr({'aria-label':'Tutup'}), 'div[role="banner"]');
     I.see('Apa yang Anda pikirkan');
-});
+}).tag('@facebook');

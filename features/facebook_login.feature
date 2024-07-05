@@ -1,3 +1,4 @@
+@facebook
 Feature: Facebook Login
   In order to see my Facebook account
   As a user

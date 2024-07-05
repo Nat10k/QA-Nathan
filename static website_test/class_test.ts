@@ -1,5 +1,5 @@
 // Base URL : https://informatika.stei.itb.ac.id/~rinaldi.munir/
-Feature('class_access');
+Feature('class_access').tag('@static_pak_rin');
 
 Scenario('open website', async ({ I }) => {
     I.amOnPage('https://informatika.stei.itb.ac.id/~rinaldi.munir/');

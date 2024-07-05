@@ -6,7 +6,7 @@ const waitTime = 10;
 
 Before(({ login }) => {
     login('facebook');
-})
+});
 
 Scenario('post text', async ({ I }) => { // Facebook doesn't handle spaces in email
     I.click(locate('div').withAttr({'aria-label':'Buat', role:'button'}));
@@ -18,7 +18,7 @@ Scenario('post text', async ({ I }) => { // Facebook doesn't handle spaces in em
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
     I.wait(waitTime);
     I.see('test');
-});
+}).tag('@facebook');
 
 Scenario('post text and photo', async ({ I }) => { // Facebook doesn't handle spaces in email
     I.click(locate('div').withAttr({'aria-label':'Buat', role:'button'}));
@@ -33,7 +33,7 @@ Scenario('post text and photo', async ({ I }) => { // Facebook doesn't handle sp
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
     I.wait(waitTime);
     I.see('test photo');
-});
+}).tag('@facebook');
 
 Scenario('upload non-image file on photo post', async ({ I }) => { // Facebook doesn't handle spaces in email
     I.click(locate('div').withAttr({'aria-label':'Buat', role:'button'}));
@@ -48,4 +48,4 @@ Scenario('upload non-image file on photo post', async ({ I }) => { // Facebook d
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
     I.wait(waitTime);
     I.see('test photo');
-});
+}).tag('@facebook');

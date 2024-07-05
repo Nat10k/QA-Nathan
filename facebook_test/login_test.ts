@@ -12,7 +12,7 @@ const waitTime = 2;
 
 Before(({ I }) => {
     I.amOnPage(baseURL);
-})
+});
 
 Scenario('empty fields', async ({ I }) => {
     I.click('Masuk');
@@ -27,7 +27,7 @@ Scenario('empty fields', async ({ I }) => {
     I.click('Masuk');
     I.wait(waitTime);
     I.see('Kredensial Salah');
-});
+}).tag('@facebook');
 
 Scenario('wrong credentials', async ({ I }) => { // Facebook doesn't handle spaces in email
     I.fillField('email', 'lolololololol@gmail.com');
@@ -41,7 +41,7 @@ Scenario('wrong credentials', async ({ I }) => { // Facebook doesn't handle spac
     I.click('Masuk');
     I.wait(waitTime);
     I.see('Kredensial Salah');
-});
+}).tag('@facebook');
 
 Scenario('complete login',  async ({ I }) => {
     I.fillField('email', email);
@@ -49,4 +49,4 @@ Scenario('complete login',  async ({ I }) => {
     I.click('Masuk');
     I.wait(waitTime);
     I.see(firstName);
-});
+}).tag('@facebook');

@@ -23,7 +23,7 @@ Scenario('empty fields', async ({ I }) => {
     
     I.click('Next');
     I.see('Enter a password');
-});
+}).tag('@gmail');
 
 Scenario('invalid email and password',  async ({ I }) => {
     I.fillField('Email or phone', 'jipdosfh8eugruykqgk,jgK!');
@@ -35,7 +35,7 @@ Scenario('invalid email and password',  async ({ I }) => {
     I.fillField('Enter your password', 'hgp9r8y3289yeuigdvbajkuo@Gibkljda');
     I.click('Next');
     I.see('Wrong password. Try again or click Forgot password to reset it.');
-});
+}).tag('@gmail');
 
 Scenario('complete register',  async ({ I }) => {
     I.fillField('Email or phone', email);
@@ -44,4 +44,4 @@ Scenario('complete register',  async ({ I }) => {
     I.fillField('Enter your password', secret(password));
     I.click('Next');
     pause();
-});
+}).tag('@gmail');

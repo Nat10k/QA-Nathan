@@ -5,13 +5,13 @@ const username = process.env.SPOTIFY_EMAIL;
 const password = process.env.SPOTIFY_PASSWORD;
 
 // Base URL : https://open.spotify.com/
-Feature('login spotify');
+Feature('login spotify').tag('@spotify');
 
 const waitTime = 10;
 
 Before(({ I }) => {
     I.openLogInSpotify();
-})
+});
 
 Scenario('wrong email', async ({ I }) => {
     // Search based on id

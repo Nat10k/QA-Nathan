@@ -10,7 +10,7 @@ const waitTime = 10;
 
 Before(({ login }) => {
     login('facebook');
-})
+});
 
 Scenario('make new group', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
@@ -29,14 +29,14 @@ Scenario('make new group', async ({ I }) => {
                     .withAttr({'aria-label':'Buat'}));
     I.wait(waitTime);
     I.see('Beranda komunitas');
-});
+}).tag('@facebook');
 
 Scenario('open group', ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
     I.click(locate('a').inside(locate('div').withAttr({'aria-label':'Daftar Grup'})).withAttr({ role:'link'}).withText(groupName));
     I.wait(waitTime);
     I.see('Beranda komunitas');
-});
+}).tag('@facebook');
 
 Scenario('post text in group', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
@@ -54,7 +54,7 @@ Scenario('post text in group', async ({ I }) => {
     // Like the post
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})).first());
     I.seeElement(locate('div').withAttr({role:'button', 'aria-label':'Hapus Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})));
-});
+}).tag('@facebook');
 
 Scenario('anonymous photo post in group', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
@@ -76,7 +76,7 @@ Scenario('anonymous photo post in group', async ({ I }) => {
     // Like the post
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})).first());
     I.seeElement(locate('div').withAttr({role:'button', 'aria-label':'Hapus Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})));
-});
+}).tag('@facebook');
 
 Scenario('invite friend', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
@@ -92,4 +92,4 @@ Scenario('invite friend', async ({ I }) => {
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Kirim Undangan'}));
     I.wait(2);
     I.see('Beranda komunitas');
-});
+}).tag('@facebook');

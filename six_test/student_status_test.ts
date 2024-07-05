@@ -1,4 +1,4 @@
-Feature('student status');
+Feature('student status').tag('@six');
 
 Before(({ login }) => {
     login('six');

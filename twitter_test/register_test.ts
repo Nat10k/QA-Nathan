@@ -8,7 +8,7 @@ const baseURL = "https://x.com/?lang=en"
 
 const waitTime = 20;
 
-Feature('register twitter');
+Feature('register twitter').tag('@twitter');
 
 Before(({ I }) => {
     I.amOnPage(baseURL);

@@ -12,7 +12,7 @@ fs.writeFileSync('test.txt', "Airline : " + faker.airline.airline().name + "\nAi
 // var buf = Buffer.from(data, 'base64');
 // fs.writeFileSync('testImg.svg', buf);
 
-Feature('File upload')
+Feature('File upload').tag('@upload')
 
 Scenario('upload file', ({ I }) => {
     I.amOnPage('https://jumpshare.com/file-sharing/txt');
@@ -21,4 +21,4 @@ Scenario('upload file', ({ I }) => {
     I.click('Share Your Code');
     I.wait(5);
     I.see('Analytics');
-})
+});

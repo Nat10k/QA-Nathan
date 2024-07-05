@@ -1,3 +1,4 @@
+@facebook
 Feature: Facebook Marketplace
   In order to buy items from other users
   As a user

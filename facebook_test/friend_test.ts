@@ -8,13 +8,13 @@ Feature('friend');
 
 Before(({ login }) => {
     login('facebook');
-})
+});
 
 Scenario('add friend', async ({ I }) => {
     I.amOnPage(friendProfile);
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Tambahkan teman'}));
     pause(); // Terima permintaan di akun satunya
-});
+}).tag('@facebook');
 
 Scenario('chat', async ({ I }) => {
     I.amOnPage(friendProfile);
@@ -51,7 +51,7 @@ Scenario('chat', async ({ I }) => {
     I.wait(2);
     I.pressKey('Enter');
     I.see('Terkirim');
-});
+}).tag('@facebook');
 
 Scenario('unfriend', async ({ I }) => {
     I.amOnPage(friendProfile);
@@ -59,4 +59,4 @@ Scenario('unfriend', async ({ I }) => {
     I.wait(2);
     I.click(locate('div').withAttr({role:'menuitem'}).withDescendant(locate('span').withText('Hapus pertemanan')));
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Konfirmasi'}));
-});
+}).tag('@facebook');

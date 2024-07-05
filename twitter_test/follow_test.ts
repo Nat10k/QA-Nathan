@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config({path:'./twitter_test/.env'});
 const friend = process.env.TWITTER_FRIEND_ID;
 
-Feature('follow');
+Feature('follow').tag('@twitter');
 
 Before(({ I, login }) => {
     login('twitter');

@@ -1,5 +1,5 @@
 // Base URL : https://informatika.stei.itb.ac.id/~rinaldi.munir/
-Feature('download_slide');
+Feature('download_slide').tag('@static_pak_rin');
 
 Scenario('Download Kriptografi klasik (Bagian 1) S1 Semester II 2022/2023', async ({ I }) => {
     I.amOnPage('https://informatika.stei.itb.ac.id/~rinaldi.munir/Kriptografi/kriptografi.htm');

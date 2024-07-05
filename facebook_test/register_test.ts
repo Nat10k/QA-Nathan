@@ -12,7 +12,7 @@ Feature('register facebook');
 Before(({ I }) => {
     I.amOnPage(baseURL);
     I.click('Buat akun baru');
-})
+});
 
 Scenario('empty fields', async ({ I }) => {
     I.click('websubmit');
@@ -20,7 +20,7 @@ Scenario('empty fields', async ({ I }) => {
     I.fillField('firstname', firstName);
     I.click('websubmit');
     I.see('Daftar');
-});
+}).tag('@facebook');
 
 Scenario('invalid email', async ({ I }) => { // Facebook doesn't handle spaces in email
     // Fill other fields first
@@ -51,7 +51,7 @@ Scenario('invalid email', async ({ I }) => { // Facebook doesn't handle spaces i
     I.click('websubmit');
     I.wait(5);
     I.seeElement('#reg_error_inner');
-});
+}).tag('@facebook');
 
 Scenario('invalid password',  async ({ I }) => {
     // Fill other fields first
@@ -75,7 +75,7 @@ Scenario('invalid password',  async ({ I }) => {
     I.click('websubmit');
     I.wait(5);
     I.seeElement('#reg_error_inner');
-});
+}).tag('@facebook');
 
 Scenario('complete signup',  async ({ I }) => {
     I.fillField('firstname', firstName);
@@ -88,4 +88,4 @@ Scenario('complete signup',  async ({ I }) => {
     I.click('websubmit');
     I.wait(5);
     I.see(firstName);
-});
+}).tag('@facebook');

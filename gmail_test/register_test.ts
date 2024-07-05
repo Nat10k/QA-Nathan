@@ -59,7 +59,7 @@ Scenario('empty fields', async ({ I }) => {
     I.click('Next');
     I.click('Next');
     I.see('Please enter a phone number');
-});
+}).tag('@gmail');
 
 Scenario('invalid email, password, phone',  async ({ I }) => {
     I.fillField('First name', firstName);
@@ -113,7 +113,7 @@ Scenario('invalid email, password, phone',  async ({ I }) => {
     I.fillField('Phone number', 'jjiahu2');
     I.click('Next');
     I.see('This phone number format is not recognized. Please check the country and number.');
-});
+}).tag('@gmail');
 
 Scenario('complete register',  async ({ I }) => {
     I.fillField('First name', firstName);
@@ -143,4 +143,4 @@ Scenario('complete register',  async ({ I }) => {
     I.fillField('Phone number', phone);
     I.click('Next');
     pause();
-});
+}).tag('@gmail');

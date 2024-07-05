@@ -2,7 +2,7 @@ Feature('like');
 
 Before(({ login }) => {
     login('facebook');
-})
+});
 
 Scenario('like self post', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Beranda'}));
@@ -15,5 +15,5 @@ Scenario('like self post', async ({ I }) => {
             e.click();
         }
     }));
-});
+}).tag('@facebook');
 

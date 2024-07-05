@@ -23,7 +23,7 @@ Scenario('empty fields', async ({ I }) => {
     I.wait(waitTime);
     I.click('Sign in');
     I.see('Please enter your password.');
-});
+}).tag('@six');
 
 Scenario('invalid email and password',  async ({ I }) => {
     I.fillField('loginfmt', 'jipdosfh8eugruykqgkjgK');
@@ -42,7 +42,7 @@ Scenario('invalid email and password',  async ({ I }) => {
     I.fillField('passwd', 'hgp9r8y3289yeuigdvbajkuo@Gibkljda');
     I.click('Sign in');
     I.waitForText('Your account or password is incorrect.',20);
-});
+}).tag('@six');
 
 Scenario('complete login',  async ({ I }) => {
     I.fillField('loginfmt', email);
@@ -52,4 +52,4 @@ Scenario('complete login',  async ({ I }) => {
     I.click('Sign in');
     pause();
     I.waitForText('Status Mahasiswa', 10);
-});
+}).tag('@six');
