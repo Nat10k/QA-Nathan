@@ -37,4 +37,29 @@ Then('I should hear the podcast being played', () => {
   I.waitForElement(locate('aside').withAttr({'aria-label':'Now playing view'}), 30);
 });
 
+When('I click the search button', () => {
+  // From "features\spotify_search.feature" {"line":21,"column":5}
+  I.click(locate('a').withAttr({'aria-label':'Search'}));
+});
+
+When('I search for {string}', (val) => {
+  // From "features\spotify_search.feature" {"line":22,"column":5}
+  I.fillField(locate('input').inside(locate('form').withAttr({role:'search'})), val);
+});
+
+Then('I should see {string} in the results', (val) => {
+  // From "features\spotify_search.feature" {"line":17,"column":5}
+  I.waitForElement(locate('a').withAttr({'title':val}), 30);
+});
+
+When('I click {string} category', (val) => {
+  // From "features\spotify_search.feature" {"line":23,"column":5}
+  I.click(locate('a').withDescendant(locate('span').withText(val)));
+});
+
+Then('I should see {string} in the filtered results', (val) => {
+  // From "features\spotify_search.feature" {"line":25,"column":5}
+  I.waitForElement(locate('p').withAttr({'title': val}));
+});
+
 export {}
