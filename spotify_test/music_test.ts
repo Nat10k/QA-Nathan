@@ -9,7 +9,8 @@ Before(({ login }) => {
 Scenario('open the first of the recommended songs on top of page', async ({ I }) => {
     I.click(locate('div').withAttr({role:'button'}).withClassAttr('CardButton-sc-g9vf2u-0 doNNoL').first());
     I.wait(3);
-    I.click(locate('button').withAttr({'data-testid':'play-button'}));
+    I.click(locate('button').withAttr({'data-testid':'play-button'}).last());
+    I.waitForElement(locate('aside').withAttr({'aria-label':'Now playing view'}), 30);
 });
 
 // Scenario('invalid password',  async ({ I }) => {
