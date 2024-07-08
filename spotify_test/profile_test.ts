@@ -2,8 +2,6 @@ import { makeFakeAvatar } from "../data-faker";
 
 Feature('spotify profile').tag('@spotify');
 
-const waitTime = 10;
-
 Before(({ login }) => {
     login('spotify');
 });
@@ -25,7 +23,7 @@ Scenario('change profile picture', async ({ I }) => {
     I.attachFile(locate('input').withAttr({type:'file','data-testid':'image-file-picker'}).inside(locate('div').withAttr({role:'dialog'})), 'fakeAvatar.jpg');
     I.wait(5);
     I.click(locate('button').withChild(locate('span').withText('Save')).inside(locate('div').withAttr({role:'dialog'})));
-    I.waitForText('Profile',5);
+    I.waitForInvisible(locate('div').withAttr({role:'dialog'}), 5);
 });
 
 Scenario('delete profile picture', async ({ I }) => {
@@ -35,7 +33,7 @@ Scenario('delete profile picture', async ({ I }) => {
     I.click(locate('button').withDescendant(locate('span').withText('Edit profile')));
     I.click(locate('button').withChild(locate('span').withText('Remove photo')).inside(locate('div').withAttr({role:'dialog'})));
     I.click(locate('button').withChild(locate('span').withText('Save')).inside(locate('div').withAttr({role:'dialog'})));
-    I.waitForText('Profile',5);
+    I.waitForInvisible(locate('div').withAttr({role:'dialog'}), 5);
 });
 
 export {}

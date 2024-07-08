@@ -51,7 +51,7 @@ When('I search for {string}', (val) => {
 
 Then('I should see {string} in the results', (val) => {
   // From "features\spotify_search.feature" {"line":17,"column":5}
-  I.waitForElement(locate('a').withAttr({'title':val}), 30);
+  I.waitForText(val, 20, '#searchPage');
 });
 
 When('I click {string} category', (val) => {
@@ -61,7 +61,7 @@ When('I click {string} category', (val) => {
 
 Then('I should see {string} in the filtered results', (val) => {
   // From "features\spotify_search.feature" {"line":25,"column":5}
-  I.waitForElement(locate('p').withAttr({'title': val}));
+  I.waitForText(val, 20, '#searchPage');
 });
 
 When('I click the profile button', () => {
@@ -104,7 +104,7 @@ When('I save', () => {
 
 Then('I should see profile and my new profile picture', () => {
   // From "features\spotify_profile.feature" {"line":19,"column":5}
-  I.waitForText('Profile', 5);
+  I.waitForInvisible(locate('div').withAttr({role:'dialog'}), 5);
 });
 
 When('I click remove photo', () => {
@@ -114,7 +114,7 @@ When('I click remove photo', () => {
 
 Then('I should see profile and my profile picture empty', () => {
   // From "features\spotify_profile.feature" {"line":25,"column":5}
-  I.waitForText('Profile',5);
+  I.waitForInvisible(locate('div').withAttr({role:'dialog'}), 5);
 });
 
 export {}
