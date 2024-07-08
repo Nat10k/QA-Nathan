@@ -12,14 +12,14 @@ exports.config = {
       url: 'https://www.facebook.com',
       show: true,
       restart: false,
-      windowSize: '1024x680',
+      windowSize: '1024x950',
       waitForNavigation: 'networkidle0',
       waitForAction: 1500,
       keepCookies: true,
       chrome: {
         args: [
           '--no-sandbox',
-          '--window-size=1024,550',
+          '--window-size=1024,900',
           '--disable-notifications',
           '--use-fake-ui-for-media-stream'
         ]
