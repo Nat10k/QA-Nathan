@@ -21,7 +21,7 @@ Scenario('add a few songs', async ({ I }) => {
     I.click(locate('div').withAttr({role:'button'}).inside(locate('ul').withAttr({role:'list', 'aria-label':'Your Library'})));
     I.waitForText('My Playlist', 10);
     I.fillField(locate('input').withAttr({role:'searchbox'}).inside(locate('div').withAttr({role:'search'}).
-                inside(locate('div').withClassAttr('main-view-container'))), 'Persona 3');
+                inside(locate('div').withClassAttr('main-view-container'))), 'Show');
     I.wait(2);
     for (let i=1; i<=7; i++) {
         I.click(locate('button').withAttr({'data-testid':'add-to-playlist-button'}).at(i));
