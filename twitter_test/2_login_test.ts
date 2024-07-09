@@ -27,6 +27,10 @@ Scenario('wrong credentials', async ({ I }) => {
     I.fillField('Phone, email, or username', email);
     I.click('Next');
     I.wait(3);
+    const passwordFieldCount = await I.grabNumberOfVisibleElements('password');
+    if (passwordFieldCount < 1) {
+        pause(); // Verify account
+    }
     I.fillField('password', 'blidaiubwehbsa');
     I.click('Log in');
     I.waitForText('Wrong password', waitTime);
@@ -36,6 +40,10 @@ Scenario('complete login',  async ({ I }) => {
     I.click('Sign in');
     I.fillField('Phone, email, or username', email);
     I.click('Next');
+    const passwordFieldCount = await I.grabNumberOfVisibleElements('password');
+    if (passwordFieldCount < 1) {
+        pause(); // Verify account
+    }
     I.fillField('password', secret(password));
     I.wait(2);
     I.click('Log in');
