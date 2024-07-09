@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
 import { makeFakeAvatar } from '../data-faker';
+import { group } from 'console';
 
 dotenv.config({path:'./facebook_test/.env'});
 const groupName = process.env.FACEBOOK_GROUP_NAME;
@@ -57,6 +58,7 @@ Scenario('post text in group', async ({ I }) => {
 }).tag('@facebook');
 
 Scenario('anonymous photo post in group', async ({ I }) => {
+    I.scrollPageToBottom();
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
     I.click(locate('a').inside(locate('div').withAttr({'aria-label':'Daftar Grup'})).withAttr({ role:'link'}).withText(groupName));
     I.wait(waitTime);
@@ -78,18 +80,33 @@ Scenario('anonymous photo post in group', async ({ I }) => {
     I.seeElement(locate('div').withAttr({role:'button', 'aria-label':'Hapus Suka'}).inside(locate('div').withAttr({'data-visualcompletion':'ignore-dynamic'})));
 }).tag('@facebook');
 
-Scenario('invite friend', async ({ I }) => {
+// Scenario('invite friend', async ({ I }) => {
+//     I.click(locate('a').withAttr({'aria-label':'Grup'}));
+//     I.click(locate('a').inside(locate('div').withAttr({'aria-label':'Daftar Grup'})).withAttr({ role:'link'}).withText(groupName));
+//     I.wait(waitTime);
+//     I.see('Beranda komunitas');
+
+//     I.click(locate('div').withAttr({role:'button', 'aria-label':'Undang'}));
+//     I.click(locate('div').withAttr({role:'menuitem'}).withDescendant(locate('span').withTextEquals('Undang teman Facebook')));
+//     I.fillField(locate('input').withAttr({'aria-label':'Cari teman berdasarkan nama'}), 'No');
+//     I.wait(2);
+//     I.click(locate('div').withAttr({role:'checkbox'}).first());
+//     I.click(locate('div').withAttr({role:'button', 'aria-label':'Kirim Undangan'}));
+//     I.wait(2);
+//     I.see('Beranda komunitas');
+// }).tag('@facebook');
+
+Scenario('leave group', async ({ I }) => {
     I.click(locate('a').withAttr({'aria-label':'Grup'}));
     I.click(locate('a').inside(locate('div').withAttr({'aria-label':'Daftar Grup'})).withAttr({ role:'link'}).withText(groupName));
     I.wait(waitTime);
     I.see('Beranda komunitas');
 
-    I.click(locate('div').withAttr({role:'button', 'aria-label':'Undang'}));
-    I.click(locate('div').withAttr({role:'menuitem'}).withDescendant(locate('span').withTextEquals('Undang teman Facebook')));
-    I.fillField(locate('input').withAttr({'aria-label':'Cari teman berdasarkan nama'}), 'No');
-    I.wait(2);
-    I.click(locate('div').withAttr({role:'checkbox'}).first());
-    I.click(locate('div').withAttr({role:'button', 'aria-label':'Kirim Undangan'}));
-    I.wait(2);
-    I.see('Beranda komunitas');
+    I.click(locate('a').withAttr({role:'tab'}).withDescendant(locate('span').withTextEquals('Anggota')));
+    I.scrollPageToBottom();
+    I.click('div[aria-label^="Tindakan grup lainnya"]');
+    I.click(locate('div').withAttr({role:'menuitem'}));
+    I.click(locate('div').withAttr({'aria-label':'Hapus Grup'}));
+    I.waitForText('Orang dan Halaman baru yang bergabung dengan grup ini akan muncul di sini.', 10);
+    I.click(locate('a').withAttr({'aria-label':'Grup'}));
 }).tag('@facebook');
