@@ -3,6 +3,8 @@ import * as dotenv from 'dotenv';
 dotenv.config({path:'./facebook_test/.env'});
 const facebookEmail = process.env.FACEBOOK_EMAIL;
 const facebookPassword = process.env.FACEBOOK_PASSWORD;
+const facebookFriendEmail = process.env.FACEBOOK_FRIEND_EMAIL;
+const facebookFriendPassword = process.env.FACEBOOK_FRIEND_PASSWORD;
 
 dotenv.config({path:'./twitter_test/.env'});
 const twitterEmail = process.env.TWITTER_EMAIL;
@@ -52,6 +54,18 @@ export = function() {
         this.fillField('pass', secret(facebookPassword));
         this.click('Log in');
         this.wait(waitTime);
+      },
+      loginFriendFacebook: function() {
+        this.amOnPage('/');
+        this.fillField('email', facebookFriendEmail);
+        this.fillField('pass', secret(facebookFriendPassword));
+        this.click('Log in');
+        this.wait(waitTime);
+      },
+      logoutFacebook: function() {
+        this.click(locate('div').withAttr({'aria-label':'Profil Anda'}));
+        this.click(locate('div').withAttr({role:'button'}).inside(locate('div').withAttr({role:'list'})).last());
+        this.waitForText('logins', 20);
       },
       loginSpotify: function() {
         this.openLogInSpotify();

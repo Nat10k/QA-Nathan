@@ -3,17 +3,27 @@ import { makeFakeAvatar } from '../data-faker';
 
 dotenv.config({path:'./facebook_test/.env'});
 const friendProfile = process.env.FACEBOOK_FRIEND_PROFILE;
+const selfProfile = process.env.FACEBOOK_SELF_PROFILE;
 
 Feature('friend');
 
-Before(({ login }) => {
-    login('facebook');
-});
-
 Scenario('add friend', async ({ I }) => {
-    I.amOnPage(friendProfile);
+    const loginBtn = await I.grabNumberOfVisibleElements(locate('button').withAttr({'data-testid':'royal_login_button'}));
+    if (loginBtn < 1) {
+        I.logoutFacebook();
+    }
+    I.loginFriendFacebook();
+    I.amOnPage(selfProfile);
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Tambahkan teman'}));
-    pause(); // Terima permintaan di akun satunya
+}).tag('@facebook');
+
+Scenario('accept friend', async ({ I }) => {
+    I.logoutFacebook();
+    I.loginFacebook();
+    I.amOnPage(friendProfile);
+    I.click(locate('div').withAttr({role:'button', 'aria-label':'Tanggapi'}));
+    I.click(locate('div').withAttr({role:'menuitem'}).first());
+    I.waitForText('Teman', 5);
 }).tag('@facebook');
 
 Scenario('chat', async ({ I }) => {
@@ -51,6 +61,9 @@ Scenario('chat', async ({ I }) => {
     I.wait(2);
     I.pressKey('Enter');
     I.see('Terkirim');
+
+    // Close chat
+    I.click(locate('div').withAttr({'aria-label':'Tutup obrolan'}));
 }).tag('@facebook');
 
 Scenario('unfriend', async ({ I }) => {
