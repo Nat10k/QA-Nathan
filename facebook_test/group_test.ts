@@ -65,8 +65,8 @@ Scenario('anonymous photo post in group', async ({ I }) => {
     I.see('Beranda komunitas');
 
     // Anonymous photo post
-    I.scrollPageToBottom();
-    I.click(locate('div').withAttr({role:'button'}).withDescendant(locate('span').withTextEquals('Postingan Anonim')));
+    I.click(locate('div').withAttr({role:'button'}).withClassAttr('x1i10hfl xjbqb8w xjqpnuy xa49m3k xqeqjp1 x2hbi6w x13fuv20 xu3j5b3 x1q0q8m5 x26u7qi x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x1ypdohk xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r x2lwn1j x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1q0g3np x87ps6o x1lku1pv x1a2a7pz x6s0dn4 x1lq5wgf xgqcy7u x30kzoy x9jhf4c x78zum5 x1r8uery x1iyjqo2 xs83m0k xl56j7k x1pshirs x1y1aw1k x1sxyh0 xwib8y2 xurb0ha').first());
+    I.waitForText('Buat Postingan Anonim', 10);
     I.click(locate('div').withAttr({role:'button', 'aria-label':'Buat Postingan Anonim'}).inside(locate('div').withAttr({role:'dialog'})));
     I.type('Anonymous test');
     await makeFakeAvatar('fakeAvatar.jpg');
