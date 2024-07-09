@@ -12,13 +12,14 @@ Before(({ I, login }) => {
 
 Scenario('Follow random person', async ({ I }) => {
     I.scrollPageToBottom();
+    I.scrollTo(locate('aside').withAttr({'aria-label':'Who to follow'}));
     I.see('Who to follow');
     I.click('Follow');
     I.see('Following');
 });
 
 Scenario('search friend to follow',  async ({ I }) => {
-    I.click({css:'[data-testid="AppTabBar_Explore_Link"'});
+    I.click(locate('a').withAttr({'data-testid':'AppTabBar_Explore_Link'}).inside(locate('nav').withAttr({role:'navigation'})));
     I.fillField('Search', friend);
     I.click('Search for');
     I.click('Follow');
@@ -26,31 +27,14 @@ Scenario('search friend to follow',  async ({ I }) => {
 });
 
 Scenario('unfollow all', async ({ I }) => {
-    I.click({css:'[data-testid="AppTabBar_Profile_Link"]'});
+    I.click('a[aria-label="Profile"]');
     I.wait(2);
     I.click(locate('a').withText('Following'));
+    const followingCount = await I.grabNumberOfVisibleElements(locate('button').withAttr({'data-testid':'UserCell'}));
+    for (let i=0; i<followingCount; i++) {
+        I.click('button[aria-label^="Following @"]');
+        I.click(locate('button').withAttr({'data-testid':'confirmationSheetConfirm'}).inside(locate('div').withAttr({'data-testid':'confirmationSheetDialog'})));
+    }
     // I.click('Following');
-    I.executeScript(() => {
-        var regExp = new RegExp('^Following @*');
-        const followButtons = document.querySelectorAll('button');
-        console.log(followButtons);
-        const filteredButtons = Array.from(followButtons).filter(button => {
-            return regExp.test(button.ariaLabel);
-        });
-        console.log(filteredButtons);
-        var delay = 1000;
-        filteredButtons.forEach((e) => {
-            if (e instanceof HTMLElement) {
-                e.click();
-                setTimeout(() => {
-                    const unfollowConfirm = document.querySelector('[data-testid="confirmationSheetConfirm"]');
-                    if (unfollowConfirm instanceof HTMLElement) {
-                        unfollowConfirm.click();
-                    }
-                }, delay);
-            }
-        });
-    });
-    I.wait(5);
     I.dontSee('Following');
 });
