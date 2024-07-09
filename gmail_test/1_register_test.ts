@@ -142,5 +142,6 @@ Scenario('complete register',  async ({ I }) => {
     // Phone number
     I.fillField('Phone number', phone);
     I.click('Next');
+    I.say('Please handle captcha');
     pause();
 }).tag('@gmail');

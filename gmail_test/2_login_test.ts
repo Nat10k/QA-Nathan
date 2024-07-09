@@ -19,6 +19,7 @@ Scenario('empty fields', async ({ I }) => {
     I.see('Enter an email or phone number');
     I.fillField('Email or phone', email);
     I.click('Next');
+    I.say('Please handle captcha');
     pause();
     
     I.click('Next');
@@ -43,5 +44,6 @@ Scenario('complete register',  async ({ I }) => {
     
     I.fillField('Enter your password', secret(password));
     I.click('Next');
+    I.say('Please handle captcha');
     pause();
 }).tag('@gmail');

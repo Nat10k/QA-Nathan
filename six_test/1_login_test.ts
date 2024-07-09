@@ -50,6 +50,7 @@ Scenario('complete login',  async ({ I }) => {
     I.wait(waitTime);
     I.fillField('passwd', secret(password));
     I.click('Sign in');
+    I.say('Please authenticate login');
     pause();
     I.waitForText('Status Mahasiswa', 10);
 }).tag('@six');

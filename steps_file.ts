@@ -32,12 +32,13 @@ export = function() {
         this.wait(waitTime);
       },
       loginTwitter: function() {
-        this.amOnPage('/');
+        this.amOnPage('https://x.com/?lang=en');
         this.scrollPageToBottom();
         this.wait(2);
         this.click('Sign in');
         this.fillField('Phone, email, or username', twitterEmail);
         this.click('Next');
+        this.say('Please handle captcha');
         pause(); // Handle suspicious login activity
         this.fillField('password', secret(twitterPassword));
         this.wait(2);
@@ -70,6 +71,7 @@ export = function() {
         this.wait(5);
         this.fillField(locate('input').withAttr({name:'passwd'}), secret(sixPassword));
         this.click('Sign in');
+        this.say('Please authenticate login');
         pause();
         this.waitForText('Status Mahasiswa', 10);
       }
