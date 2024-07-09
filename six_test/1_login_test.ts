@@ -7,15 +7,12 @@ const waitTime = 5;
 
 Feature('login six');
 
-Before(({ I }) => {
+Scenario('empty fields', async ({ I }) => {
     I.amOnPage('https://six.itb.ac.id/');
     I.click('Login');
     I.wait(waitTime);
     I.click('Login dengan ITB Account');
     I.wait(waitTime);
-});
-
-Scenario('empty fields', async ({ I }) => {
     I.click('Next');
     I.see('Enter a valid email address, phone number, or Skype name.');
     I.fillField('loginfmt', email);
@@ -26,6 +23,11 @@ Scenario('empty fields', async ({ I }) => {
 }).tag('@six');
 
 Scenario('invalid email and password',  async ({ I }) => {
+    I.amOnPage('https://six.itb.ac.id/');
+    I.click('Login');
+    I.wait(waitTime);
+    I.click('Login dengan ITB Account');
+    I.wait(waitTime);
     I.fillField('loginfmt', 'jipdosfh8eugruykqgkjgK');
     I.click('Next');
     I.see('We couldn\'t find an account with that username.');
@@ -45,6 +47,11 @@ Scenario('invalid email and password',  async ({ I }) => {
 }).tag('@six');
 
 Scenario('complete login',  async ({ I }) => {
+    I.amOnPage('https://six.itb.ac.id/');
+    I.click('Login');
+    I.wait(waitTime);
+    I.click('Login dengan ITB Account');
+    I.wait(waitTime);
     I.fillField('loginfmt', email);
     I.click('Next');
     I.wait(waitTime);
@@ -53,4 +60,12 @@ Scenario('complete login',  async ({ I }) => {
     I.say('Please authenticate login');
     pause();
     I.waitForText('Status Mahasiswa', 10);
+}).tag('@six');
+
+Scenario('logout',  async ({ I }) => {
+    I.click(locate('a').withAttr({'data-toggle':'dropdown'}).last());
+    I.click(locate('a').withAttr({'href':'/logout'}));
+    I.waitForText(email, 10);
+    I.click(locate('div').withAttr({'data-test-id':email}));
+    I.waitForText('Login', 10);
 }).tag('@six');
